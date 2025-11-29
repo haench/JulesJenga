@@ -1,19 +1,21 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 vi.mock('../../src/firebase.js', () => ({
-  db: {},
-  auth: { currentUser: { uid: 'user-1' } },
-  collection: vi.fn((db, name) => ({ db, name })),
-  query: vi.fn((c) => c),
-  orderBy: vi.fn(),
-  getDocs: vi.fn(async () => ({
-    docs: [
-      { id: '1', data: () => ({ title: 'A', questions: [] }) },
-      { id: '2', data: () => ({ title: 'B', questions: [] }) },
-    ],
+  getDb: vi.fn(async () => ({})),
+  getAuthInstance: vi.fn(async () => ({ currentUser: { uid: 'user-1' } })),
+  getFirestoreFns: vi.fn(async () => ({
+    collection: vi.fn((db, name) => ({ db, name })),
+    query: vi.fn((c) => c),
+    orderBy: vi.fn(),
+    getDocs: vi.fn(async () => ({
+      docs: [
+        { id: '1', data: () => ({ title: 'A', questions: [] }) },
+        { id: '2', data: () => ({ title: 'B', questions: [] }) },
+      ],
+    })),
+    addDoc: vi.fn(async () => ({ id: 'new-id' })),
+    serverTimestamp: vi.fn(() => 'now'),
   })),
-  addDoc: vi.fn(async () => ({ id: 'new-id' })),
-  serverTimestamp: vi.fn(() => 'now'),
 }));
 
 import { fetchQuestionSets, createQuestionSet } from '../../src/services/setsService.js';

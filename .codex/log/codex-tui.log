@@ -3208,3 +3208,49 @@
 *** End Patch
 [2m2025-11-29T19:52:05.272719Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
 [2m2025-11-29T19:56:01.696439Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T19:56:02.031365Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T19:56:02.031523Z[0m [32m INFO[0m ghost commit captured: e2e90491de18ae5a031a4a92d8d67b8aefca3e54
+[2m2025-11-29T19:56:02.031530Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:56:29.243320Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/mainApp.js
+@@
+ function createLayout(root) {
+   root.innerHTML = '';
+   const shell = document.createElement('div');
+   shell.className = 'layout';
+ 
+   const header = document.createElement('header');
+   header.className = 'topbar';
+   const title = document.createElement('div');
+   title.className = 'view-title';
+   title.textContent = 'JulesJenga';
+   const userInfo = document.createElement('div');
+   userInfo.className = 'muted';
+   userInfo.textContent = 'Sign in required to load sets';
+   header.appendChild(title);
+   header.appendChild(userInfo);
+@@
+   shell.appendChild(header);
+   shell.appendChild(main);
+   root.appendChild(shell);
+-  return { title, main };
++  return { title, main, userInfo };
+ }
+*** End Patch
+[2m2025-11-29T19:56:34.353908Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/mainApp.js
+@@
+-  listenForAuthChanges(() => {
+-    console.log('[auth] state changed', auth.currentUser ? auth.currentUser.uid : 'signed out');
+-    showHome();
+-  });
++  listenForAuthChanges((user) => {
++    console.log('[auth] state changed', user ? user.uid : 'signed out');
++    layout.userInfo.textContent = user
++      ? `Signed in as ${user.displayName || user.email || user.uid}`
++      : 'Signed out - sign in to load sets';
++    showHome();
++  });
+*** End Patch
+[2m2025-11-29T19:56:39.222718Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
+[2m2025-11-29T20:10:04.958943Z[0m [32m INFO[0m spawning ghost snapshot task

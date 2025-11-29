@@ -1,17 +1,10 @@
-import {
-  db,
-  auth,
-  collection,
-  getDocs,
-  addDoc,
-  serverTimestamp,
-  query,
-  orderBy,
-} from '../firebase.js';
+import { getDb, getAuthInstance, getFirestoreFns } from '../firebase.js';
 
 const COLLECTION = 'questionSets';
 
 export async function fetchQuestionSets() {
+  const db = await getDb();
+  const { collection, query, orderBy, getDocs } = await getFirestoreFns();
   const colRef = collection(db, COLLECTION);
   const q = query(colRef, orderBy('createdAt', 'desc'));
   const snapshot = await getDocs(q);
@@ -22,6 +15,9 @@ export async function fetchQuestionSets() {
 }
 
 export async function createQuestionSet({ title, questions }) {
+  const auth = await getAuthInstance();
+  const { collection, addDoc, serverTimestamp } = await getFirestoreFns();
+  const db = await getDb();
   const user = auth.currentUser;
   if (!user) throw new Error('auth required to upload');
   const docRef = await addDoc(collection(db, COLLECTION), {
