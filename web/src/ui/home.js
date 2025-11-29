@@ -5,16 +5,13 @@ import { signInWithGoogle } from '../auth.js';
 export async function renderHome(root, { onStart, onUpload, user }) {
   root.innerHTML = '';
 
-  const greetingCard = document.createElement('section');
-  greetingCard.className = 'card';
+  const homeCard = document.createElement('section');
+  homeCard.className = 'card home-card';
   const greet = document.createElement('p');
   greet.className = 'muted';
   const name = user?.displayName?.split(' ')[0] || user?.email || 'Spieler';
   greet.textContent = `Hallo ${name}, wähle einen Fragenkatalog, um Jenga zu spielen.`;
-  greetingCard.appendChild(greet);
-
-  const controlCard = document.createElement('section');
-  controlCard.className = 'card control-card';
+  homeCard.appendChild(greet);
 
   const status = document.createElement('div');
   status.className = 'status';
@@ -25,6 +22,9 @@ export async function renderHome(root, { onStart, onUpload, user }) {
 
   const controlStack = document.createElement('div');
   controlStack.className = 'control-stack';
+
+  const controlsArea = document.createElement('div');
+  controlsArea.className = 'control-card home-controls';
 
   const signInBtn = document.createElement('button');
   signInBtn.textContent = 'Mit Google anmelden';
@@ -102,11 +102,12 @@ export async function renderHome(root, { onStart, onUpload, user }) {
     dropdown.disabled = true;
   }
 
-  controlCard.appendChild(controlStack);
-  controlCard.appendChild(status);
+  controlsArea.appendChild(controlStack);
+  controlsArea.appendChild(status);
 
-  root.appendChild(greetingCard);
-  root.appendChild(controlCard);
+  homeCard.appendChild(controlsArea);
+
+  root.appendChild(homeCard);
 
   await load();
 }

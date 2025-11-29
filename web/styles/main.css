@@ -97,9 +97,22 @@ input[type="file"]:focus-visible {
   box-shadow: 0 6px 18px rgba(90, 58, 20, 0.12);
 }
 
+.home-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .control-card {
   display: flex;
   justify-content: center;
+}
+
+.home-controls {
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  text-align: center;
 }
 
 .control-stack {
@@ -159,6 +172,10 @@ input[type="file"]:focus-visible {
 .muted {
   color: var(--color-text-light);
   font-size: 0.95rem;
+}
+
+.grid-help {
+  margin: 6px 0 10px;
 }
 
 .status {
@@ -222,6 +239,12 @@ input[type="file"]:focus-visible {
   box-shadow: 0 20px 40px rgba(90, 58, 20, 0.18);
 }
 
+.modal-content {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
 .modal-close {
-  margin-top: 12px;
+  margin: 16px auto 0;
+  display: block;
 }
