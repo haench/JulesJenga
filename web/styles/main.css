@@ -70,6 +70,20 @@ input[type="file"]:focus-visible {
   width: min(960px, 100%);
 }
 
+.home-hero {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.home-logo {
+  width: min(360px, 80vw);
+  max-width: 420px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 18px rgba(90, 58, 20, 0.18));
+}
+
 .topbar {
   display: flex;
   align-items: center;
@@ -247,4 +261,27 @@ input[type="file"]:focus-visible {
 .modal-close {
   margin: 16px auto 0;
   display: block;
+}
+
+.tiles-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.tiles-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/F83E27B6-10F5-4149-93B0-E1F3AEC6E125.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: min(560px, 90%);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.tiles-section .grid,
+.tiles-section .grid-help {
+  position: relative;
+  z-index: 1;
 }

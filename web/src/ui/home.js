@@ -5,6 +5,16 @@ import { signInWithGoogle } from '../auth.js';
 export async function renderHome(root, { onStart, onUpload, user }) {
   root.innerHTML = '';
 
+  const hero = document.createElement('div');
+  hero.className = 'home-hero';
+
+  const logo = document.createElement('img');
+  logo.className = 'home-logo';
+  logo.src = '/assets/F83E27B6-10F5-4149-93B0-E1F3AEC6E125.png';
+  logo.alt = 'JulesJenga Logo';
+
+  hero.appendChild(logo);
+
   const homeCard = document.createElement('section');
   homeCard.className = 'card home-card';
   const greet = document.createElement('p');
@@ -107,6 +117,7 @@ export async function renderHome(root, { onStart, onUpload, user }) {
 
   homeCard.appendChild(controlsArea);
 
+  root.appendChild(hero);
   root.appendChild(homeCard);
 
   await load();
