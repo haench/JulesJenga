@@ -4,7 +4,7 @@ export function renderGrid(container, onSelect) {
   const grid = document.createElement('div');
   grid.className = 'grid';
   const help = document.createElement('p');
-  help.className = 'muted';
+  help.className = 'muted grid-help';
   help.textContent = 'Tippe auf das Feld mit der Nummer deines Jengasteins.';
   container.appendChild(help);
   for (let i = 1; i <= 54; i++) {
