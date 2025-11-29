@@ -9,26 +9,22 @@ export async function renderHome(root, { onStart, onUpload, user }) {
   greetingCard.className = 'card';
   const greet = document.createElement('p');
   greet.className = 'muted';
-  const name = user?.displayName || user?.email || 'Spieler';
-  greet.textContent = `Hallo ${name}, wähle ein Set, um zu spielen.`;
+  const name = user?.displayName?.split(' ')[0] || user?.email || 'Spieler';
+  greet.textContent = `Hallo ${name}, wähle einen Fragenkatalog, um Jenga zu spielen.`;
   greetingCard.appendChild(greet);
 
   const controlCard = document.createElement('section');
-  controlCard.className = 'card';
+  controlCard.className = 'card control-card';
 
   const status = document.createElement('div');
   status.className = 'status';
 
-  const label = document.createElement('label');
-  label.textContent = 'Fragensets';
-  label.htmlFor = 'question-set';
-
   const dropdown = document.createElement('select');
   dropdown.id = 'question-set';
-  dropdown.ariaLabel = 'Fragensets';
+  dropdown.ariaLabel = 'Fragenset auswählen';
 
-  const actions = document.createElement('div');
-  actions.className = 'actions';
+  const controlStack = document.createElement('div');
+  controlStack.className = 'control-stack';
 
   const signInBtn = document.createElement('button');
   signInBtn.textContent = 'Mit Google anmelden';
@@ -40,12 +36,8 @@ export async function renderHome(root, { onStart, onUpload, user }) {
   startBtn.disabled = true;
 
   const uploadBtn = document.createElement('button');
-  uploadBtn.textContent = 'Upload';
-  uploadBtn.className = 'secondary';
-
-  const helper = document.createElement('p');
-  helper.className = 'muted';
-  helper.textContent = 'Jedes Set hat 54 Fragen; für den Upload wird eine Textdatei mit 55 Zeilen benötigt (Titel + 54 Fragen).';
+  uploadBtn.textContent = 'Katalog hochladen';
+  uploadBtn.className = 'secondary upload-spacer';
 
   async function load() {
     status.textContent = user ? 'Lade ...' : 'Melde dich an, um Sets zu laden.';
@@ -101,17 +93,16 @@ export async function renderHome(root, { onStart, onUpload, user }) {
   startBtn.addEventListener('click', () => onStart?.());
   uploadBtn.addEventListener('click', () => onUpload?.());
 
-  actions.appendChild(startBtn);
-  actions.appendChild(uploadBtn);
+  controlStack.appendChild(dropdown);
+  controlStack.appendChild(startBtn);
+  controlStack.appendChild(uploadBtn);
+
   if (!user) {
-    actions.prepend(signInBtn);
+    controlStack.prepend(signInBtn);
     dropdown.disabled = true;
   }
 
-  controlCard.appendChild(label);
-  controlCard.appendChild(dropdown);
-  controlCard.appendChild(actions);
-  controlCard.appendChild(helper);
+  controlCard.appendChild(controlStack);
   controlCard.appendChild(status);
 
   root.appendChild(greetingCard);

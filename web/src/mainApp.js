@@ -21,28 +21,21 @@ export function initApp(rootEl) {
     upload: () => renderUpload(layout.main, { onDone: showHome }),
   };
 
-  function setViewTitle(title) {
-    layout.title.textContent = title;
-  }
-
   function clearMain() {
     layout.main.innerHTML = '';
   }
 
   async function showHome() {
-    setViewTitle('Startseite');
     clearMain();
     await views.home();
   }
 
   function showUpload() {
-    setViewTitle('Upload Fragen');
     clearMain();
     views.upload();
   }
 
   function showGrid() {
-    setViewTitle('Spielen');
     clearMain();
     renderGrid(layout.main, (_tile, question) => {
       modal.open(question);
@@ -58,9 +51,6 @@ export function initApp(rootEl) {
   listenForAuthChanges((user) => {
     currentUser = user;
     console.log('[auth] state changed', user ? user.uid : 'signed out');
-    layout.userInfo.textContent = user
-      ? `Angemeldet als ${user.displayName || user.email || user.uid}`
-      : 'Abgemeldet – zum Laden der Sets anmelden';
     showHome();
   }).catch((err) => {
     console.error('[auth] listener failed', err);
@@ -73,22 +63,10 @@ function createLayout(root) {
   const shell = document.createElement('div');
   shell.className = 'layout';
 
-  const header = document.createElement('header');
-  header.className = 'topbar';
-  const title = document.createElement('div');
-  title.className = 'view-title';
-  title.textContent = 'JulesJenga';
-  const userInfo = document.createElement('div');
-  userInfo.className = 'muted';
-  userInfo.textContent = 'Anmeldung erforderlich, um Sets zu laden';
-  header.appendChild(title);
-  header.appendChild(userInfo);
-
   const main = document.createElement('main');
   main.className = 'content';
 
-  shell.appendChild(header);
   shell.appendChild(main);
   root.appendChild(shell);
-  return { title, main, userInfo };
+  return { main };
 }
