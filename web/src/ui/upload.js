@@ -13,13 +13,14 @@ export function renderUpload(root, { onDone }) {
 
   const hint = document.createElement('p');
   hint.className = 'muted';
-  hint.textContent = 'Dateiformat: erste Zeile = Titel, nächste 54 Zeilen = Fragen. Max. 280 Zeichen pro Frage.';
+  hint.textContent =
+    'Dateiformat: erste Zeile = Titel, nächste 54 Zeilen = Fragen. Max. 280 Zeichen pro Frage. Jedes Set hat 54 Fragen; für den Upload wird eine Textdatei mit 55 Zeilen benötigt (Titel + 54 Fragen).';
 
   const status = document.createElement('div');
   status.className = 'status';
 
   const uploadBtn = document.createElement('button');
-  uploadBtn.textContent = 'Upload';
+  uploadBtn.textContent = 'Katalog hochladen';
 
   const backBtn = document.createElement('button');
   backBtn.textContent = 'Zurück';

@@ -97,10 +97,26 @@ input[type="file"]:focus-visible {
   box-shadow: 0 6px 18px rgba(90, 58, 20, 0.12);
 }
 
-.actions {
+.control-card {
   display: flex;
+  justify-content: center;
+}
+
+.control-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 12px;
-  margin: 12px 0;
+  width: min(360px, 100%);
+}
+
+.control-stack select,
+.control-stack button {
+  width: 100%;
+}
+
+.upload-spacer {
+  margin-top: 20px;
 }
 
 .primary {
