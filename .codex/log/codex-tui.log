@@ -3564,3 +3564,18 @@
 *** End Patch
 [2m2025-11-29T20:11:26.344323Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
 [2m2025-11-29T20:14:06.474216Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T20:14:06.800955Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T20:14:06.800989Z[0m [32m INFO[0m ghost commit captured: 4ff4a7906ff62643c7359399f0f550ebf6bf6dad
+[2m2025-11-29T20:14:06.800995Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T20:14:13.933203Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/mainApp.js
+@@
+-import { auth } from './firebase.js';
+ import { listenForAuthChanges } from './auth.js';
+@@
+   listenForAuthChanges((user) => {
+-    console.log('[auth] state changed', user ? user.uid : 'signed out');
++    console.log('[auth] state changed', user ? user.uid : 'signed out');
+*** End Patch
+[2m2025-11-29T20:14:18.965117Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
+[2m2025-11-29T20:15:51.733539Z[0m [32m INFO[0m spawning ghost snapshot task

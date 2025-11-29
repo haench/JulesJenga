@@ -8,13 +8,14 @@ import { listenForAuthChanges } from './auth.js';
 export function initApp(rootEl) {
   const modal = createModal();
   const layout = createLayout(rootEl);
+  let currentUser = null;
 
   const views = {
     home: () =>
       renderHome(layout.main, {
         onStart: showGrid,
         onUpload: showUpload,
-        user: auth.currentUser,
+        user: currentUser,
       }),
     grid: () => showGrid(),
     upload: () => renderUpload(layout.main, { onDone: showHome }),
@@ -55,11 +56,14 @@ export function initApp(rootEl) {
 
   setActiveSet(null);
   listenForAuthChanges((user) => {
+    currentUser = user;
     console.log('[auth] state changed', user ? user.uid : 'signed out');
     layout.userInfo.textContent = user
       ? `Signed in as ${user.displayName || user.email || user.uid}`
       : 'Signed out - sign in to load sets';
     showHome();
+  }).catch((err) => {
+    console.error('[auth] listener failed', err);
   });
   showHome();
 }
