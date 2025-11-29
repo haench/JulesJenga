@@ -22,3 +22,4 @@ Thumbs.db
 # Tests/automation
 playwright-report/
 test-results/
+.codex/sessions/2025/11/29/rollout-2025-11-29T18-09-25-019ad097-4297-76e2-854e-3cf022232e18.jsonl
