@@ -2878,3 +2878,131 @@
 *** End Patch
 [2m2025-11-29T19:34:20.394160Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
 [2m2025-11-29T19:38:30.027218Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T19:38:30.351750Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T19:38:30.351786Z[0m [32m INFO[0m ghost commit captured: 65465185e768ac2b1e55ff6b652b690313242ae6
+[2m2025-11-29T19:38:30.351794Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:38:50.365057Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/mainApp.js
+@@
+ export function initApp(rootEl) {
+   const modal = createModal();
+   const layout = createLayout(rootEl);
+ 
+   const views = {
+-    home: () => renderHome(layout.main, { onStart: showGrid, onUpload: showUpload, user: auth.currentUser }),
++    home: () =>
++      renderHome(layout.main, {
++        onStart: showGrid,
++        onUpload: showUpload,
++        user: auth.currentUser,
++      }),
+     grid: () => showGrid(),
+     upload: () => renderUpload(layout.main, { onDone: showHome }),
+   };
+ 
+   function setViewTitle(title) {
+@@
+ function createLayout(root) {
+   root.innerHTML = '';
+   const shell = document.createElement('div');
+   shell.className = 'layout';
+ 
+   const header = document.createElement('header');
+   header.className = 'topbar';
+   const title = document.createElement('div');
+   title.className = 'view-title';
+-  title.textContent = 'JulesJenga';
++  title.textContent = 'JulesJenga';
++  const userInfo = document.createElement('div');
++  userInfo.className = 'muted';
++  userInfo.textContent = 'Sign in required to load sets';
+   header.appendChild(title);
++  header.appendChild(userInfo);
+ 
+   const main = document.createElement('main');
+   main.className = 'content';
+ 
+*** End Patch
+[2m2025-11-29T19:38:58.868333Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/ui/home.js
+@@
+ export async function renderHome(root, { onStart, onUpload, user }) {
+   root.innerHTML = '';
+ 
+   const greetingCard = document.createElement('section');
+   greetingCard.className = 'card';
+   const greet = document.createElement('p');
+   greet.className = 'muted';
+-  const name = user?.displayName || user?.email || 'Player';
+-  greet.textContent = `Hi ${name}, pick a set to start playing.`;
++  const name = user?.displayName || user?.email || 'Player';
++  greet.textContent = `Hi ${name}, pick a set to start playing.`;
+   greetingCard.appendChild(greet);
+ 
+   const controlCard = document.createElement('section');
+   controlCard.className = 'card';
+@@
+   const actions = document.createElement('div');
+   actions.className = 'actions';
+@@
+   helper.className = 'muted';
+   helper.textContent = 'Each set has 54 questions; uploading requires a 55-line text file (title + 54 questions).';
+ 
+   async function load() {
+-    status.textContent = 'Loading...';
++    status.textContent = user ? 'Loading...' : 'Sign in to load sets.';
++    if (!user) {
++      startBtn.disabled = true;
++      return;
++    }
+     try {
+       const sets = await fetchQuestionSets();
+       loadSets(sets);
+       dropdown.innerHTML = '';
+       sets.forEach((set) => {
+@@
+       }
+     } catch (err) {
+       console.error(err);
+-      status.textContent = 'Error loading sets.';
++      status.textContent = 'Error loading sets.';
+       startBtn.disabled = true;
+     }
+   }
+*** End Patch
+[2m2025-11-29T19:39:04.346454Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
+[2m2025-11-29T19:39:13.182232Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/tests/integration/us1_dropdown_start.test.js
+@@
+ import * as setsService from '../../src/services/setsService.js';
+ 
+ vi.mock('../../src/services/setsService.js');
+ 
+ describe('home UI', () => {
+   beforeEach(() => {
+     document.body.innerHTML = '<div id="root"></div>';
++    vi.resetAllMocks();
+   });
+ 
+   it('enables start when set available', async () => {
+     setsService.fetchQuestionSets.mockResolvedValueOnce([
+       { id: 's1', title: 'Set 1', questions: Array(54).fill('Q'), createdBy: 'u1' },
+     ]);
+     const root = document.getElementById('root');
+     let started = false;
+-    await renderHome(root, { onStart: () => (started = true) });
+-    const startBtn = root.querySelector('button');
++    await renderHome(root, { onStart: () => (started = true), user: { displayName: 'Tester' } });
++    const startBtn = root.querySelector('button.primary');
+     expect(startBtn.disabled).toBe(false);
+     startBtn.click();
+     expect(started).toBe(true);
+   });
+ });
+*** End Patch
+[2m2025-11-29T19:39:16.277968Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
+[2m2025-11-29T19:43:56.399486Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T19:43:56.729370Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T19:43:56.729399Z[0m [32m INFO[0m ghost commit captured: 254c47c9eb05f809e861ff636a8a371403cd7d95
+[2m2025-11-29T19:43:56.729405Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:45:01.727173Z[0m [32m INFO[0m spawning ghost snapshot task

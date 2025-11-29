@@ -1,5 +1,6 @@
 import { fetchQuestionSets } from '../services/setsService.js';
 import { loadSets, setActiveSet } from '../state/appState.js';
+import { signInWithGoogle } from '../auth.js';
 
 export async function renderHome(root, { onStart, onUpload, user }) {
   root.innerHTML = '';
@@ -29,6 +30,10 @@ export async function renderHome(root, { onStart, onUpload, user }) {
   const actions = document.createElement('div');
   actions.className = 'actions';
 
+  const signInBtn = document.createElement('button');
+  signInBtn.textContent = 'Sign in with Google';
+  signInBtn.className = 'primary';
+
   const startBtn = document.createElement('button');
   startBtn.textContent = 'Start';
   startBtn.className = 'primary';
@@ -46,6 +51,7 @@ export async function renderHome(root, { onStart, onUpload, user }) {
     status.textContent = user ? 'Loading...' : 'Sign in to load sets.';
     if (!user) {
       startBtn.disabled = true;
+      dropdown.disabled = true;
       return;
     }
     try {
@@ -79,11 +85,27 @@ export async function renderHome(root, { onStart, onUpload, user }) {
     startBtn.disabled = !e.target.value;
   });
 
+  signInBtn.addEventListener('click', async () => {
+    status.textContent = 'Opening sign-in...';
+    try {
+      await signInWithGoogle();
+      status.textContent = 'Signed in. Loading sets...';
+      await load();
+    } catch (err) {
+      console.error(err);
+      status.textContent = 'Sign-in failed.';
+    }
+  });
+
   startBtn.addEventListener('click', () => onStart?.());
   uploadBtn.addEventListener('click', () => onUpload?.());
 
   actions.appendChild(startBtn);
   actions.appendChild(uploadBtn);
+  if (!user) {
+    actions.prepend(signInBtn);
+    dropdown.disabled = true;
+  }
 
   controlCard.appendChild(label);
   controlCard.appendChild(dropdown);

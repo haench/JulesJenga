@@ -28,7 +28,7 @@ const {
   query,
   orderBy,
 } = firestoreMod;
-const { getAuth } = authMod;
+const { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } = authMod;
 
 const defaultConfig = (() => {
   if (isBrowser && window.FIREBASE_CONFIG) return window.FIREBASE_CONFIG;
@@ -69,4 +69,7 @@ export {
   serverTimestamp,
   query,
   orderBy,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
 };
