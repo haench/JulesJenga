@@ -56,6 +56,7 @@ export function initApp(rootEl) {
 
   setActiveSet(null);
   listenForAuthChanges(() => {
+    console.log('[auth] state changed', auth.currentUser ? auth.currentUser.uid : 'signed out');
     showHome();
   });
   showHome();

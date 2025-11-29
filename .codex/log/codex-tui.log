@@ -3006,3 +3006,192 @@
 [2m2025-11-29T19:43:56.729399Z[0m [32m INFO[0m ghost commit captured: 254c47c9eb05f809e861ff636a8a371403cd7d95
 [2m2025-11-29T19:43:56.729405Z[0m [32m INFO[0m ghost snapshot gate marked ready
 [2m2025-11-29T19:45:01.727173Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T19:45:02.057206Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T19:45:02.057235Z[0m [32m INFO[0m ghost commit captured: 49fe5b01d74e6bfe7ba3791304129e4ccb128de1
+[2m2025-11-29T19:45:02.057240Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:45:05.474529Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/firebase.js
+@@
+-const { getAuth } = authMod;
++const { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } = authMod;
+@@
+ export const db = getFirestore(app);
+ export const auth = getAuth(app);
+ export {
+   app,
+   collection,
+   getDocs,
+   addDoc,
+   serverTimestamp,
+   query,
+   orderBy,
++  GoogleAuthProvider,
++  signInWithPopup,
++  onAuthStateChanged,
+ };
+*** End Patch
+[2m2025-11-29T19:45:11.097562Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Add File: web/src/auth.js
++import { auth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from './firebase.js';
++
++let cachedUser = null;
++
++export function getCurrentUser() {
++  return cachedUser || auth.currentUser;
++}
++
++export function listenForAuthChanges(callback) {
++  return onAuthStateChanged(auth, (user) => {
++    cachedUser = user;
++    callback?.(user);
++  });
++}
++
++export async function signInWithGoogle() {
++  const provider = new GoogleAuthProvider();
++  const result = await signInWithPopup(auth, provider);
++  cachedUser = result.user;
++  return cachedUser;
++}
+*** End Patch
+[2m2025-11-29T19:45:18.926178Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/mainApp.js
+@@
+ import { renderHome } from './ui/home.js';
+ import { renderGrid } from './ui/grid.js';
+ import { renderUpload } from './ui/upload.js';
+ import { createModal } from './ui/modal.js';
+-import { getStateSnapshot, setActiveSet } from './state/appState.js';
+-import { auth } from './firebase.js';
++import { getStateSnapshot, setActiveSet } from './state/appState.js';
++import { auth } from './firebase.js';
++import { listenForAuthChanges } from './auth.js';
+ 
+ export function initApp(rootEl) {
+   const modal = createModal();
+   const layout = createLayout(rootEl);
+ 
+@@
+ 
+   function setViewTitle(title) {
+     layout.title.textContent = title;
+   }
+ 
+@@
+     renderGrid(layout.main, (_tile, question) => {
+       modal.open(question);
+     });
+     const back = document.createElement('button');
+     back.textContent = 'Back to Home';
+@@
+ 
+   setActiveSet(null);
+-  showHome();
++  listenForAuthChanges(() => {
++    showHome();
++  });
++  showHome();
+ }
+*** End Patch
+[2m2025-11-29T19:45:32.186895Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/ui/home.js
+@@
+-import { fetchQuestionSets } from '../services/setsService.js';
+-import { loadSets, setActiveSet } from '../state/appState.js';
+-
+-export async function renderHome(root, { onStart, onUpload, user }) {
++import { fetchQuestionSets } from '../services/setsService.js';
++import { loadSets, setActiveSet } from '../state/appState.js';
++import { signInWithGoogle } from '../auth.js';
++
++export async function renderHome(root, { onStart, onUpload, user }) {
+   root.innerHTML = '';
+ 
+   const greetingCard = document.createElement('section');
+   greetingCard.className = 'card';
+   const greet = document.createElement('p');
+@@
+-  const controlCard = document.createElement('section');
+-  controlCard.className = 'card';
++  const controlCard = document.createElement('section');
++  controlCard.className = 'card';
+@@
+   const label = document.createElement('label');
+   label.textContent = 'Question sets';
+   label.htmlFor = 'question-set';
+@@
+   const dropdown = document.createElement('select');
+   dropdown.id = 'question-set';
+   dropdown.ariaLabel = 'Question sets';
+ 
+   const actions = document.createElement('div');
+   actions.className = 'actions';
+ 
++  const signInBtn = document.createElement('button');
++  signInBtn.textContent = 'Sign in with Google';
++  signInBtn.className = 'primary';
++
+   const startBtn = document.createElement('button');
+   startBtn.textContent = 'Start';
+   startBtn.className = 'primary';
+   startBtn.disabled = true;
+@@
+   const helper = document.createElement('p');
+   helper.className = 'muted';
+   helper.textContent = 'Each set has 54 questions; uploading requires a 55-line text file (title + 54 questions).';
+ 
+   async function load() {
+-    status.textContent = user ? 'Loading...' : 'Sign in to load sets.';
+-    if (!user) {
+-      startBtn.disabled = true;
+-      return;
+-    }
++    status.textContent = user ? 'Loading...' : 'Sign in to load sets.';
++    if (!user) {
++      startBtn.disabled = true;
++      dropdown.disabled = true;
++      return;
++    }
+     try {
+       const sets = await fetchQuestionSets();
+       loadSets(sets);
+       dropdown.innerHTML = '';
+@@
+   dropdown.addEventListener('change', (e) => {
+     setActiveSet(e.target.value);
+     startBtn.disabled = !e.target.value;
+   });
+ 
++  signInBtn.addEventListener('click', async () => {
++    status.textContent = 'Opening sign-in...';
++    try {
++      await signInWithGoogle();
++      status.textContent = 'Signed in. Loading sets...';
++      await load();
++    } catch (err) {
++      console.error(err);
++      status.textContent = 'Sign-in failed.';
++    }
++  });
++
+   startBtn.addEventListener('click', () => onStart?.());
+   uploadBtn.addEventListener('click', () => onUpload?.());
+ 
+   actions.appendChild(startBtn);
+   actions.appendChild(uploadBtn);
++  if (!user) {
++    actions.prepend(signInBtn);
++    dropdown.disabled = true;
++  }
+ 
+   controlCard.appendChild(label);
+   controlCard.appendChild(dropdown);
+   controlCard.appendChild(actions);
+   controlCard.appendChild(helper);
+*** End Patch
+[2m2025-11-29T19:45:35.854958Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
+[2m2025-11-29T19:47:49.882382Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T19:47:50.219696Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T19:47:50.219730Z[0m [32m INFO[0m ghost commit captured: 9bfb8a04455e844fb969dea18008bf5bd0a3241a
+[2m2025-11-29T19:47:50.219739Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:51:57.706239Z[0m [32m INFO[0m spawning ghost snapshot task

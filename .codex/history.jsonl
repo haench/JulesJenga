@@ -36,3 +36,5 @@
 {"session_id":"019ad097-4297-76e2-854e-3cf022232e18","ts":1764445110,"text":"ok the app now loads wihput errors - but i see nothing on screen"}
 {"session_id":"019ad097-4297-76e2-854e-3cf022232e18","ts":1764445436,"text":"you are correct i think i am not siged in. I have activated firebase authentication, but it does not prompt me to sign in. did we ever signInWithPopup / signInWithRedirect in our app?"}
 {"session_id":"019ad097-4297-76e2-854e-3cf022232e18","ts":1764445501,"text":"yes do option 1"}
+{"session_id":"019ad097-4297-76e2-854e-3cf022232e18","ts":1764445669,"text":"It still not showing a login screen. Am i forgetting something?"}
+{"session_id":"019ad097-4297-76e2-854e-3cf022232e18","ts":1764445917,"text":"well, can you add a console log for the user status?"}
