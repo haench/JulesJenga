@@ -2592,3 +2592,206 @@
 [2m2025-11-29T18:57:45.229812Z[0m [32m INFO[0m ghost commit captured: 07b40049ca61e2bfe23e4e13575a9f61486945ac
 [2m2025-11-29T18:57:45.229821Z[0m [32m INFO[0m ghost snapshot gate marked ready
 [2m2025-11-29T19:00:54.668309Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T19:00:54.990021Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T19:00:54.990049Z[0m [32m INFO[0m ghost commit captured: fdbd23a494f61a3e12ccf835585a325a2ec7c157
+[2m2025-11-29T19:00:54.990055Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:01:24.940983Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/firebase.js
+@@
+-import { initializeApp, getApps } from 'firebase/app';
+-import { getFirestore } from 'firebase/firestore';
+-import { getAuth } from 'firebase/auth';
+-
+-const defaultConfig = {
+-  apiKey: process.env.FIREBASE_API_KEY || 'TODO_API_KEY',
+-  authDomain: process.env.FIREBASE_AUTH_DOMAIN || 'TODO_PROJECT_ID.firebaseapp.com',
+-  projectId: process.env.FIREBASE_PROJECT_ID || 'TODO_PROJECT_ID',
+-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET || 'TODO_PROJECT_ID.appspot.com',
+-  messagingSenderId: process.env.FIREBASE_SENDER_ID || 'TODO_SENDER_ID',
+-  appId: process.env.FIREBASE_APP_ID || 'TODO_APP_ID',
+-};
+-
+-function resolveConfig() {
+-  if (typeof window !== 'undefined' && window.FIREBASE_CONFIG) {
+-    return window.FIREBASE_CONFIG;
+-  }
+-  return defaultConfig;
+-}
+-
+-const firebaseConfig = resolveConfig();
+-const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+-
+-export const db = getFirestore(app);
+-export const auth = getAuth(app);
+-export { app };
++let appMod;
++let firestoreMod;
++let authMod;
++
++if (typeof window !== 'undefined' && window.document) {
++  // Browser: use CDN modules
++  appMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js');
++  firestoreMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js');
++  authMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js');
++} else {
++  // Node (tests/CI): use npm modules
++  appMod = await import('firebase/app');
++  firestoreMod = await import('firebase/firestore');
++  authMod = await import('firebase/auth');
++}
++
++const { initializeApp, getApps } = appMod;
++const {
++  getFirestore,
++  collection,
++  getDocs,
++  addDoc,
++  serverTimestamp,
++  query,
++  orderBy,
++} = firestoreMod;
++const { getAuth } = authMod;
++
++const defaultConfig = {
++  apiKey: process.env.FIREBASE_API_KEY || 'TODO_API_KEY',
++  authDomain: process.env.FIREBASE_AUTH_DOMAIN || 'TODO_PROJECT_ID.firebaseapp.com',
++  projectId: process.env.FIREBASE_PROJECT_ID || 'TODO_PROJECT_ID',
++  storageBucket: process.env.FIREBASE_STORAGE_BUCKET || 'TODO_PROJECT_ID.appspot.com',
++  messagingSenderId: process.env.FIREBASE_SENDER_ID || 'TODO_SENDER_ID',
++  appId: process.env.FIREBASE_APP_ID || 'TODO_APP_ID',
++};
++
++function resolveConfig() {
++  if (typeof window !== 'undefined' && window.FIREBASE_CONFIG) {
++    return window.FIREBASE_CONFIG;
++  }
++  return defaultConfig;
++}
++
++const firebaseConfig = resolveConfig();
++const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
++
++export const db = getFirestore(app);
++export const auth = getAuth(app);
++export {
++  app,
++  collection,
++  getDocs,
++  addDoc,
++  serverTimestamp,
++  query,
++  orderBy,
++};
+*** End Patch
+[2m2025-11-29T19:01:29.782587Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/services/setsService.js
+@@
+-import {
+-  collection,
+-  getDocs,
+-  addDoc,
+-  serverTimestamp,
+-  query,
+-  orderBy,
+-} from 'firebase/firestore';
+-import { db, auth } from '../firebase.js';
++import {
++  db,
++  auth,
++  collection,
++  getDocs,
++  addDoc,
++  serverTimestamp,
++  query,
++  orderBy,
++} from '../firebase.js';
+*** End Patch
+[2m2025-11-29T19:01:39.292764Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/tests/unit/sets.fetch.test.js
+@@
+-vi.mock('firebase/app', () => ({ initializeApp: vi.fn(() => ({})), getApps: vi.fn(() => []) }));
+-vi.mock('firebase/auth', () => ({ getAuth: vi.fn(() => ({ currentUser: { uid: 'user-1' } })) }));
+-vi.mock('firebase/firestore', () => {
+-  return {
+-    getFirestore: vi.fn(() => ({})),
+-    collection: vi.fn((db, name) => ({ db, name })),
+-    query: vi.fn((c) => c),
+-    orderBy: vi.fn(),
+-    getDocs: vi.fn(async () => ({
+-      docs: [
+-        { id: '1', data: () => ({ title: 'A', questions: [] }) },
+-        { id: '2', data: () => ({ title: 'B', questions: [] }) },
+-      ],
+-    })),
+-    addDoc: vi.fn(async () => ({ id: 'new-id' })),
+-    serverTimestamp: vi.fn(() => 'now'),
+-  };
+-});
+-
+-import { fetchQuestionSets, createQuestionSet } from '../../src/services/setsService.js';
++vi.mock('../../src/firebase.js', () => ({
++  db: {},
++  auth: { currentUser: { uid: 'user-1' } },
++  collection: vi.fn((db, name) => ({ db, name })),
++  query: vi.fn((c) => c),
++  orderBy: vi.fn(),
++  getDocs: vi.fn(async () => ({
++    docs: [
++      { id: '1', data: () => ({ title: 'A', questions: [] }) },
++      { id: '2', data: () => ({ title: 'B', questions: [] }) },
++    ],
++  })),
++  addDoc: vi.fn(async () => ({ id: 'new-id' })),
++  serverTimestamp: vi.fn(() => 'now'),
++}));
++
++import { fetchQuestionSets, createQuestionSet } from '../../src/services/setsService.js';
+*** End Patch
+[2m2025-11-29T19:01:42.644729Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
+[2m2025-11-29T19:01:54.100212Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/firebase.js
+@@
+-let appMod;
+-let firestoreMod;
+-let authMod;
+-
+-if (typeof window !== 'undefined' && window.document) {
+-  // Browser: use CDN modules
+-  appMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js');
+-  firestoreMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js');
+-  authMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js');
+-} else {
+-  // Node (tests/CI): use npm modules
+-  appMod = await import('firebase/app');
+-  firestoreMod = await import('firebase/firestore');
+-  authMod = await import('firebase/auth');
+-}
++let appMod;
++let firestoreMod;
++let authMod;
++
++const isVitest = typeof process !== 'undefined' && process.env && process.env.VITEST;
++const isBrowser = typeof window !== 'undefined' && window.document && !isVitest;
++
++if (isBrowser) {
++  // Browser: use CDN modules
++  appMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js');
++  firestoreMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js');
++  authMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js');
++} else {
++  // Node (tests/CI): use npm modules
++  appMod = await import('firebase/app');
++  firestoreMod = await import('firebase/firestore');
++  authMod = await import('firebase/auth');
++}
+*** End Patch
+[2m2025-11-29T19:01:58.192136Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
+[2m2025-11-29T19:30:01.282768Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T19:30:01.620647Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T19:30:01.620684Z[0m [32m INFO[0m ghost commit captured: 2a62ab7ddcd330c0cc0159059af185dcf9eacbe2
+[2m2025-11-29T19:30:01.620691Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:33:13.830980Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T19:33:14.154984Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T19:33:14.155019Z[0m [32m INFO[0m ghost commit captured: 6ed68606b8c1e12239c76651b46795521a43f831
+[2m2025-11-29T19:33:14.155026Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:34:03.114817Z[0m [32m INFO[0m spawning ghost snapshot task
