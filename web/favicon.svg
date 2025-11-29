@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <rect width="256" height="256" rx="30" fill="#f6b73c"/>
+  <rect x="48" y="70" width="160" height="30" rx="5" fill="#8a5a1f"/>
+  <rect x="48" y="110" width="160" height="30" rx="5" fill="#d89a3d"/>
+  <rect x="48" y="150" width="160" height="30" rx="5" fill="#8a5a1f"/>
+  <text x="50%" y="225" text-anchor="middle"
+        font-size="90" font-family="Comic Sans MS, Fredoka One, Baloo, sans-serif"
+        fill="#5a3a1f">J</text>
+</svg>
