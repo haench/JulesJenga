@@ -3579,3 +3579,56 @@
 *** End Patch
 [2m2025-11-29T20:14:18.965117Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
 [2m2025-11-29T20:15:51.733539Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T20:15:52.063943Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T20:15:52.063973Z[0m [32m INFO[0m ghost commit captured: fd0769b6b633c2a5449942ec4ffa4b8ea385b5f5
+[2m2025-11-29T20:15:52.063979Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T20:16:04.186927Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/mainApp.js
+@@
+ import { renderHome } from './ui/home.js';
+ import { renderGrid } from './ui/grid.js';
+ import { renderUpload } from './ui/upload.js';
+ import { createModal } from './ui/modal.js';
+ import { getStateSnapshot, setActiveSet } from './state/appState.js';
+ import { listenForAuthChanges } from './auth.js';
+ 
+ export function initApp(rootEl) {
+   const modal = createModal();
+   const layout = createLayout(rootEl);
++  let currentUser = null;
+ 
+   const views = {
+     home: () =>
+       renderHome(layout.main, {
+         onStart: showGrid,
+         onUpload: showUpload,
+-        user: auth.currentUser,
++        user: currentUser,
+       }),
+     grid: () => showGrid(),
+     upload: () => renderUpload(layout.main, { onDone: showHome }),
+   };
+@@
+ 
+   setActiveSet(null);
+-  listenForAuthChanges((user) => {
+-    console.log('[auth] state changed', user ? user.uid : 'signed out');
+-    layout.userInfo.textContent = user
+-      ? `Signed in as ${user.displayName || user.email || user.uid}`
+-      : 'Signed out - sign in to load sets';
+-    showHome();
+-  });
++  listenForAuthChanges((user) => {
++    currentUser = user;
++    console.log('[auth] state changed', user ? user.uid : 'signed out');
++    layout.userInfo.textContent = user
++      ? `Signed in as ${user.displayName || user.email || user.uid}`
++      : 'Signed out - sign in to load sets';
++    showHome();
++  }).catch((err) => {
++    console.error('[auth] listener failed', err);
++  });
+   showHome();
+ }
+*** End Patch
+[2m2025-11-29T20:16:07.914259Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
