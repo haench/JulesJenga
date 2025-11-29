@@ -1954,3 +1954,4 @@
 [2m2025-11-29T18:44:33.586842Z[0m [32m INFO[0m ghost snapshot blocking task finished
 [2m2025-11-29T18:44:33.586874Z[0m [32m INFO[0m ghost commit captured: e0ca006a2ebe2e47c2c41b1ff81ea2c03e17b409
 [2m2025-11-29T18:44:33.586879Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:47:40.306735Z[0m [32m INFO[0m spawning ghost snapshot task
