@@ -1,0 +1,26 @@
+<svg width="400" height="420" viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .wood { fill: #d89a3d; stroke: #8a5a1f; stroke-width: 5; }
+      .wood-dark { fill: #b6782d; stroke: #73481c; stroke-width: 5; }
+      .title { 
+        font-family: 'Comic Sans MS', 'Fredoka One', 'Baloo', sans-serif; 
+        fill: #f6b73c; 
+        stroke: #5a3a14; 
+        stroke-width: 6; 
+        paint-order: stroke; 
+      }
+    </style>
+  </defs>
+
+  <!-- Jenga Blocks -->
+  <rect class="wood" x="80" y="250" width="240" height="45" rx="6"/>
+  <rect class="wood-dark" x="60" y="200" width="240" height="45" rx="6"/>
+  <rect class="wood" x="100" y="150" width="240" height="45" rx="6"/>
+  <rect class="wood-dark" x="70" y="100" width="240" height="45" rx="6"/>
+  <rect class="wood" x="90" y="50" width="240" height="45" rx="6"/>
+
+  <!-- Text -->
+  <text x="200" y="340" font-size="70" text-anchor="middle" class="title">Jules</text>
+  <text x="200" y="400" font-size="80" text-anchor="middle" class="title">Jenga</text>
+</svg>
