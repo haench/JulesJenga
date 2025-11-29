@@ -13,17 +13,17 @@ describe('parseQuestionsFile', () => {
 
   it('rejects missing lines', () => {
     const text = 'Only title';
-    expect(() => parseQuestionsFile(text)).toThrow(/expected 55/);
+    expect(() => parseQuestionsFile(text)).toThrow(/Es werden 55 Zeilen erwartet/);
   });
 
   it('rejects blank question', () => {
     const lines = ['Title', '', ...Array.from({ length: 53 }, (_, i) => `Q${i + 1}`)];
     const text = lines.join('\n');
-    expect(() => parseQuestionsFile(text)).toThrow(/blank/);
+    expect(() => parseQuestionsFile(text)).toThrow(/Frage 1 ist leer/);
   });
 
   it('rejects long question', () => {
     const lines = ['Title', 'a'.repeat(281), ...Array.from({ length: 53 }, () => 'ok')];
-    expect(() => parseQuestionsFile(lines.join('\n'))).toThrow(/exceeds/);
+    expect(() => parseQuestionsFile(lines.join('\n'))).toThrow(/überschreitet 280 Zeichen/);
   });
 });
