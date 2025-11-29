@@ -61,7 +61,8 @@ export async function renderHome(root, { onStart, onUpload, user }) {
       sets.forEach((set) => {
         const opt = document.createElement('option');
         opt.value = set.id;
-        opt.textContent = `${set.title} (${set.createdBy || 'unbekannt'})`;
+        const creatorName = set.createdByName || 'unbekannt';
+        opt.textContent = `${set.title} (${creatorName})`;
         dropdown.appendChild(opt);
       });
       if (sets.length) {
