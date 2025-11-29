@@ -20,11 +20,13 @@ export async function createQuestionSet({ title, questions }) {
   const db = await getDb();
   const user = auth.currentUser;
   if (!user) throw new Error('Authentifizierung für den Upload erforderlich');
+  const createdByName = user.displayName || user.email || '';
   const docRef = await addDoc(collection(db, COLLECTION), {
     title,
     questions,
     createdAt: serverTimestamp(),
     createdBy: user.uid,
+    createdByName,
   });
   return docRef.id;
 }
