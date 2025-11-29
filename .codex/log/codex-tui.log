@@ -1860,3 +1860,94 @@
 [2m2025-11-29T18:35:21.543503Z[0m [32m INFO[0m ghost snapshot blocking task finished
 [2m2025-11-29T18:35:21.543547Z[0m [32m INFO[0m ghost commit captured: faf8f132db5af2872d3ab75eb1ba36d81a4f19a1
 [2m2025-11-29T18:35:21.543556Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:41:48.985284Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:41:49.286573Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:41:49.286607Z[0m [32m INFO[0m ghost commit captured: 53f9506a8d6d0f9db15066535052b8c63a495db0
+[2m2025-11-29T18:41:49.286617Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:41:54.350682Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-ChildItem -Recurse .github"}
+[2m2025-11-29T18:41:56.695923Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .github/workflows/firebase-hosting-merge.yml"}
+[2m2025-11-29T18:42:00.397750Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .github/workflows/firebase-hosting-pull-request.yml"}
+[2m2025-11-29T18:42:14.102749Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .github/workflows/firebase-hosting-merge.yml
+@@
+ jobs:
+   build_and_deploy:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v4
+-      - run: npm ci && npm run build
++      - uses: actions/setup-node@v4
++        with:
++          node-version: 18
++          cache: npm
++          cache-dependency-path: web/package-lock.json
++      - run: npm ci
++        working-directory: web
++      - run: npm test
++        working-directory: web
+       - uses: FirebaseExtended/action-hosting-deploy@v0
+         with:
+           repoToken: ${{ secrets.GITHUB_TOKEN }}
+           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JULESJENGA }}
+           channelId: live
+           projectId: julesjenga
+*** End Patch
+[2m2025-11-29T18:42:20.124037Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .github/workflows/firebase-hosting-pull-request.yml
+@@
+ jobs:
+   build_and_preview:
+     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v4
+-      - run: npm ci && npm run build
++      - uses: actions/setup-node@v4
++        with:
++          node-version: 18
++          cache: npm
++          cache-dependency-path: web/package-lock.json
++      - run: npm ci
++        working-directory: web
++      - run: npm test
++        working-directory: web
+       - uses: FirebaseExtended/action-hosting-deploy@v0
+         with:
+           repoToken: ${{ secrets.GITHUB_TOKEN }}
+           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JULESJENGA }}
+           projectId: julesjenga
+*** End Patch
+[2m2025-11-29T18:43:15.154683Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:43:15.487535Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:43:15.487569Z[0m [32m INFO[0m ghost commit captured: 4b7cf6e0172ef63e1eb907da8c8589ce5dba236a
+[2m2025-11-29T18:43:15.487576Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:43:30.467211Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Move-Item web/public/index.html web/index.html; Move-Item web/public/styles web/styles; Remove-Item web/public -Force"}
+[2m2025-11-29T18:43:33.673686Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: firebase.json
+@@
+-  "hosting": {
+-    "public": "web/public",
++  "hosting": {
++    "public": "web",
+     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+     "cleanUrls": true
+   },
+*** End Patch
+[2m2025-11-29T18:43:37.196906Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content firebase.json"}
+[2m2025-11-29T18:43:43.617002Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n{\n  \"hosting\": {\n    \"public\": \"web\",\n    \"ignore\": [\n      \"firebase.json\",\n      \"**/.*\",\n      \"**/node_modules/**\"\n    ],\n    \"rewrites\": [\n      { \"source\": \"**\", \"destination\": \"/index.html\" }\n    ]\n  },\n  \"firestore\": {\n    \"database\": \"(default)\",\n    \"location\": \"eur3\",\n    \"rules\": \"web/firestore.rules\",\n    \"indexes\": \"firestore.indexes.json\"\n  },\n  \"emulators\": {\n    \"hosting\": { \"port\": 5000 },\n    \"firestore\": { \"port\": 8080 }\n  }\n}\n'@ | Set-Content firebase.json"}
+[2m2025-11-29T18:43:51.934524Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/index.html
+@@
+-  <link rel="stylesheet" href="./styles/main.css" />
++  <link rel="stylesheet" href="./styles/main.css" />
+@@
+-  <script type="module" src="../src/main.js"></script>
++  <script type="module" src="./src/main.js"></script>
+ </body>
+*** End Patch
+[2m2025-11-29T18:43:55.998181Z[0m [32m INFO[0m ToolCall: shell_command {"command":"dir web"}
+[2m2025-11-29T18:44:19.661192Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:44:19.988964Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:44:19.988998Z[0m [32m INFO[0m ghost commit captured: 8c3615f7d533f144c0b89c309cdda80d5ba51832
+[2m2025-11-29T18:44:19.989005Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:44:33.265270Z[0m [32m INFO[0m spawning ghost snapshot task
