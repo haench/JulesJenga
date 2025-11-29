@@ -1,6 +1,33 @@
-import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+let appMod;
+let firestoreMod;
+let authMod;
+
+const isVitest = typeof process !== 'undefined' && process.env && process.env.VITEST;
+const isBrowser = typeof window !== 'undefined' && window.document && !isVitest;
+
+if (isBrowser) {
+  // Browser: use CDN modules
+  appMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js');
+  firestoreMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js');
+  authMod = await import('https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js');
+} else {
+  // Node (tests/CI): use npm modules
+  appMod = await import('firebase/app');
+  firestoreMod = await import('firebase/firestore');
+  authMod = await import('firebase/auth');
+}
+
+const { initializeApp, getApps } = appMod;
+const {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  serverTimestamp,
+  query,
+  orderBy,
+} = firestoreMod;
+const { getAuth } = authMod;
 
 const defaultConfig = {
   apiKey: process.env.FIREBASE_API_KEY || 'TODO_API_KEY',
@@ -23,4 +50,12 @@ const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 export const auth = getAuth(app);
-export { app };
+export {
+  app,
+  collection,
+  getDocs,
+  addDoc,
+  serverTimestamp,
+  query,
+  orderBy,
+};

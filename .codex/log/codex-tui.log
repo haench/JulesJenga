@@ -1991,3 +1991,604 @@
 [2m2025-11-29T18:50:28.553830Z[0m [32m INFO[0m ghost commit captured: 53d4d99c817dbd403c591af9f262dd4e682cd9ab
 [2m2025-11-29T18:50:28.553837Z[0m [32m INFO[0m ghost snapshot gate marked ready
 [2m2025-11-29T18:53:29.521204Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:53:29.856476Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:53:29.856509Z[0m [32m INFO[0m ghost commit captured: 308ba98cecf2a793983c39d71d3d948dfcd1b0ba
+[2m2025-11-29T18:53:29.856518Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:53:50.078292Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/main.js
+@@
+-import { initApp } from './mainApp.js';
+-
+-document.addEventListener('DOMContentLoaded', () => {
+-  const app = document.getElementById('app');
+-  if (!app) return;
+-  app.innerHTML = '<h1>JulesJenga</h1><p>Scaffold ready.</p>';
+-  initApp(app);
+-});
++import { initApp } from './mainApp.js';
++
++document.addEventListener('DOMContentLoaded', () => {
++  const app = document.getElementById('app');
++  if (!app) return;
++  initApp(app);
++});
+*** End Patch
+[2m2025-11-29T18:54:02.977646Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/mainApp.js
+@@
+-import { renderHome } from './ui/home.js';
+-import { renderGrid } from './ui/grid.js';
+-import { renderUpload } from './ui/upload.js';
+-import { createModal } from './ui/modal.js';
+-import { getStateSnapshot, setActiveSet } from './state/appState.js';
+-
+-export function initApp(rootEl) {
+-  const modal = createModal();
+-
+-  const views = {
+-    home: () => renderHome(rootEl, { onStart: showGrid, onUpload: showUpload }),
+-    grid: () => showGrid(),
+-    upload: () => renderUpload(rootEl, { onDone: showHome }),
+-  };
+-
+-  function clearRoot() {
+-    rootEl.innerHTML = '';
+-  }
+-
+-  async function showHome() {
+-    clearRoot();
+-    await views.home();
+-  }
+-
+-  function showUpload() {
+-    clearRoot();
+-    views.upload();
+-  }
+-
+-  function showGrid() {
+-    clearRoot();
+-    const stateSnap = getStateSnapshot();
+-    const header = document.createElement('div');
+-    header.className = 'grid-header';
+-    const back = document.createElement('button');
+-    back.textContent = 'Back';
+-    back.addEventListener('click', showHome);
+-    header.appendChild(back);
+-    rootEl.appendChild(header);
+-    renderGrid(rootEl, (_tile, question) => {
+-      modal.open(question);
+-    });
+-  }
+-
+-  // Initial render
+-  setActiveSet(null);
+-  showHome();
+-}
++import { renderHome } from './ui/home.js';
++import { renderGrid } from './ui/grid.js';
++import { renderUpload } from './ui/upload.js';
++import { createModal } from './ui/modal.js';
++import { getStateSnapshot, setActiveSet } from './state/appState.js';
++import { auth } from './firebase.js';
++
++export function initApp(rootEl) {
++  const modal = createModal();
++  const layout = createLayout(rootEl);
++
++  const views = {
++    home: () => renderHome(layout.main, { onStart: showGrid, onUpload: showUpload, user: auth.currentUser }),
++    grid: () => showGrid(),
++    upload: () => renderUpload(layout.main, { onDone: showHome }),
++  };
++
++  function setViewTitle(title) {
++    layout.title.textContent = title;
++  }
++
++  function clearMain() {
++    layout.main.innerHTML = '';
++  }
++
++  async function showHome() {
++    setViewTitle('Home');
++    clearMain();
++    await views.home();
++  }
++
++  function showUpload() {
++    setViewTitle('Upload Questions');
++    clearMain();
++    views.upload();
++  }
++
++  function showGrid() {
++    setViewTitle('Play');
++    clearMain();
++    renderGrid(layout.main, (_tile, question) => {
++      modal.open(question);
++    });
++    const back = document.createElement('button');
++    back.textContent = 'Back to Home';
++    back.className = 'ghost';
++    back.addEventListener('click', showHome);
++    layout.main.prepend(back);
++  }
++
++  setActiveSet(null);
++  showHome();
++}
++
++function createLayout(root) {
++  root.innerHTML = '';
++  const shell = document.createElement('div');
++  shell.className = 'layout';
++
++  const header = document.createElement('header');
++  header.className = 'topbar';
++  const title = document.createElement('div');
++  title.className = 'view-title';
++  title.textContent = 'JulesJenga';
++  header.appendChild(title);
++
++  const main = document.createElement('main');
++  main.className = 'content';
++
++  shell.appendChild(header);
++  shell.appendChild(main);
++  root.appendChild(shell);
++  return { title, main };
++}
+*** End Patch
+[2m2025-11-29T18:54:22.228384Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/ui/home.js
+@@
+-import { fetchQuestionSets } from '../services/setsService.js';
+-import { loadSets, setActiveSet } from '../state/appState.js';
+-
+-export async function renderHome(root, { onStart, onUpload }) {
+-  root.innerHTML = '';
+-  const title = document.createElement('h1');
+-  title.textContent = 'JulesJenga';
+-
+-  const status = document.createElement('div');
+-  status.className = 'status';
+-
+-  const dropdown = document.createElement('select');
+-  dropdown.ariaLabel = 'Question sets';
+-
+-  const startBtn = document.createElement('button');
+-  startBtn.textContent = 'Start';
+-  startBtn.disabled = true;
+-
+-  const uploadBtn = document.createElement('button');
+-  uploadBtn.textContent = 'Upload';
+-
+-  async function load() {
+-    status.textContent = 'Loading...';
+-    try {
+-      const sets = await fetchQuestionSets();
+-      loadSets(sets);
+-      dropdown.innerHTML = '';
+-      sets.forEach((set) => {
+-        const opt = document.createElement('option');
+-        opt.value = set.id;
+-        opt.textContent = `${set.title} (${set.createdBy || 'unknown'})`;
+-        dropdown.appendChild(opt);
+-      });
+-      if (sets.length) {
+-        dropdown.value = sets[0].id;
+-        setActiveSet(sets[0].id);
+-        startBtn.disabled = false;
+-      } else {
+-        startBtn.disabled = true;
+-      }
+-      status.textContent = sets.length ? '' : 'No question sets yet.';
+-    } catch (err) {
+-      console.error(err);
+-      status.textContent = 'Error loading sets.';
+-      startBtn.disabled = true;
+-    }
+-  }
+-
+-  dropdown.addEventListener('change', (e) => {
+-    setActiveSet(e.target.value);
+-  });
+-
+-  startBtn.addEventListener('click', () => {
+-    onStart?.();
+-  });
+-
+-  uploadBtn.addEventListener('click', () => {
+-    onUpload?.();
+-  });
+-
+-  root.appendChild(title);
+-  root.appendChild(status);
+-  root.appendChild(dropdown);
+-  root.appendChild(startBtn);
+-  root.appendChild(uploadBtn);
+-
+-  await load();
+-}
++import { fetchQuestionSets } from '../services/setsService.js';
++import { loadSets, setActiveSet } from '../state/appState.js';
++
++export async function renderHome(root, { onStart, onUpload, user }) {
++  root.innerHTML = '';
++
++  const greetingCard = document.createElement('section');
++  greetingCard.className = 'card';
++  const greet = document.createElement('p');
++  greet.className = 'muted';
++  const name = user?.displayName || user?.email || 'Player';
++  greet.textContent = `Hi ${name}, pick a set to start playing.`;
++  greetingCard.appendChild(greet);
++
++  const controlCard = document.createElement('section');
++  controlCard.className = 'card';
++
++  const status = document.createElement('div');
++  status.className = 'status';
++
++  const label = document.createElement('label');
++  label.textContent = 'Question sets';
++  label.htmlFor = 'question-set';
++
++  const dropdown = document.createElement('select');
++  dropdown.id = 'question-set';
++  dropdown.ariaLabel = 'Question sets';
++
++  const actions = document.createElement('div');
++  actions.className = 'actions';
++
++  const startBtn = document.createElement('button');
++  startBtn.textContent = 'Start';
++  startBtn.className = 'primary';
++  startBtn.disabled = true;
++
++  const uploadBtn = document.createElement('button');
++  uploadBtn.textContent = 'Upload';
++  uploadBtn.className = 'secondary';
++
++  const helper = document.createElement('p');
++  helper.className = 'muted';
++  helper.textContent = 'Each set has 54 questions; uploading requires a 55-line text file (title + 54 questions).';
++
++  async function load() {
++    status.textContent = 'Loading...';
++    try {
++      const sets = await fetchQuestionSets();
++      loadSets(sets);
++      dropdown.innerHTML = '';
++      sets.forEach((set) => {
++        const opt = document.createElement('option');
++        opt.value = set.id;
++        opt.textContent = `${set.title} (${set.createdBy || 'unknown'})`;
++        dropdown.appendChild(opt);
++      });
++      if (sets.length) {
++        dropdown.value = sets[0].id;
++        setActiveSet(sets[0].id);
++        startBtn.disabled = false;
++        status.textContent = '';
++      } else {
++        startBtn.disabled = true;
++        status.textContent = 'No question sets yet. Upload one to get started.';
++      }
++    } catch (err) {
++      console.error(err);
++      status.textContent = 'Error loading sets.';
++      startBtn.disabled = true;
++    }
++  }
++
++  dropdown.addEventListener('change', (e) => {
++    setActiveSet(e.target.value);
++    startBtn.disabled = !e.target.value;
++  });
++
++  startBtn.addEventListener('click', () => onStart?.());
++  uploadBtn.addEventListener('click', () => onUpload?.());
++
++  actions.appendChild(startBtn);
++  actions.appendChild(uploadBtn);
++
++  controlCard.appendChild(label);
++  controlCard.appendChild(dropdown);
++  controlCard.appendChild(actions);
++  controlCard.appendChild(helper);
++  controlCard.appendChild(status);
++
++  root.appendChild(greetingCard);
++  root.appendChild(controlCard);
++
++  await load();
++}
+*** End Patch
+[2m2025-11-29T18:54:27.100776Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/ui/grid.js
+@@
+ export function renderGrid(container, onSelect) {
+   const grid = document.createElement('div');
+   grid.className = 'grid';
++  const help = document.createElement('p');
++  help.className = 'muted';
++  help.textContent = 'Tap a tile to reveal its question. Used tiles are dimmed for this session.';
++  container.appendChild(help);
+   for (let i = 1; i <= 54; i++) {
+     const tile = document.createElement('button');
+*** End Patch
+[2m2025-11-29T18:54:33.404586Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/ui/upload.js
+@@
+ export function renderUpload(root, { onDone }) {
+   root.innerHTML = '';
+   const heading = document.createElement('h2');
+   heading.textContent = 'Upload question set';
+ 
+   const fileInput = document.createElement('input');
+   fileInput.type = 'file';
+   fileInput.accept = '.txt,text/plain';
+ 
++  const hint = document.createElement('p');
++  hint.className = 'muted';
++  hint.textContent = 'File format: first line = title, next 54 lines = questions. Max 280 chars per question.';
++
+   const status = document.createElement('div');
+   status.className = 'status';
+@@
+ 
+   uploadBtn.addEventListener('click', async () => {
+     const file = fileInput.files?.[0];
+     if (!file) {
+       status.textContent = 'Select a file first.';
+@@
+ 
+   root.appendChild(heading);
++  root.appendChild(hint);
+   root.appendChild(fileInput);
+   root.appendChild(uploadBtn);
+   root.appendChild(backBtn);
+   root.appendChild(status);
+ }
+*** End Patch
+[2m2025-11-29T18:54:47.144254Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/public/styles/main.css
+@@
+ body {
+   margin: 0;
+   min-height: 100vh;
+ }
+ 
+ #app {
+-  display: flex;
+-  flex-direction: column;
+-  align-items: center;
+-  padding: 24px;
++  display: flex;
++  justify-content: center;
++  padding: 32px 16px;
+ }
+ 
+ button,
+ select,
+ input[type="file"] {
+@@
+   outline: 3px solid #2563eb;
+   outline-offset: 2px;
+ }
+ 
++.layout {
++  width: min(960px, 100%);
++}
++
++.topbar {
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  margin-bottom: 20px;
++}
++
++.view-title {
++  font-size: 1.25rem;
++  font-weight: 700;
++}
++
++.content {
++  display: flex;
++  flex-direction: column;
++  gap: 16px;
++}
++
++.card {
++  background: #fff;
++  border: 1px solid #e2e8f0;
++  border-radius: 12px;
++  padding: 16px 20px;
++  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
++}
++
++.actions {
++  display: flex;
++  gap: 12px;
++  margin: 12px 0;
++}
++
++.primary {
++  background: #2563eb;
++  color: #fff;
++  border-color: #2563eb;
++}
++
++.primary:disabled {
++  background: #93c5fd;
++  border-color: #93c5fd;
++  cursor: not-allowed;
++}
++
++.secondary {
++  background: #e2e8f0;
++}
++
++.ghost {
++  background: transparent;
++  border-color: #cbd5e1;
++}
++
++.muted {
++  color: #475569;
++  font-size: 0.95rem;
++}
++
++.status {
++  margin-top: 8px;
++  color: #334155;
++  font-size: 0.95rem;
++}
++
+ .grid {
+   display: grid;
+   grid-template-columns: repeat(6, minmax(48px, 1fr));
+   gap: 10px;
+   width: min(480px, 100%);
+@@
+ .tile.used {
+   background: #cbd5e1;
+   color: #475569;
+ }
+ 
++.grid-header {
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++}
++
+ .modal-overlay {
+   position: fixed;
+   inset: 0;
+   background: rgba(15, 23, 42, 0.55);
+   display: flex;
+*** End Patch
+[2m2025-11-29T18:54:59.721102Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/styles/main.css
+@@
+ body {
+   margin: 0;
+   min-height: 100vh;
+ }
+ 
+ #app {
+-  display: flex;
+-  flex-direction: column;
+-  align-items: center;
+-  padding: 24px;
++  display: flex;
++  justify-content: center;
++  padding: 32px 16px;
+ }
+ 
+ button,
+ select,
+ input[type="file"] {
+@@
+   outline: 3px solid #2563eb;
+   outline-offset: 2px;
+ }
+ 
++.layout {
++  width: min(960px, 100%);
++}
++
++.topbar {
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  margin-bottom: 20px;
++}
++
++.view-title {
++  font-size: 1.25rem;
++  font-weight: 700;
++}
++
++.content {
++  display: flex;
++  flex-direction: column;
++  gap: 16px;
++}
++
++.card {
++  background: #fff;
++  border: 1px solid #e2e8f0;
++  border-radius: 12px;
++  padding: 16px 20px;
++  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
++}
++
++.actions {
++  display: flex;
++  gap: 12px;
++  margin: 12px 0;
++}
++
++.primary {
++  background: #2563eb;
++  color: #fff;
++  border-color: #2563eb;
++}
++
++.primary:disabled {
++  background: #93c5fd;
++  border-color: #93c5fd;
++  cursor: not-allowed;
++}
++
++.secondary {
++  background: #e2e8f0;
++}
++
++.ghost {
++  background: transparent;
++  border-color: #cbd5e1;
++}
++
++.muted {
++  color: #475569;
++  font-size: 0.95rem;
++}
++
++.status {
++  margin-top: 8px;
++  color: #334155;
++  font-size: 0.95rem;
++}
++
+ .grid {
+   display: grid;
+   grid-template-columns: repeat(6, minmax(48px, 1fr));
+   gap: 10px;
+   width: min(480px, 100%);
+@@
+ .tile.used {
+   background: #cbd5e1;
+   color: #475569;
+ }
+ 
++.grid-header {
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++}
++
+ .modal-overlay {
+   position: fixed;
+   inset: 0;
+   background: rgba(15, 23, 42, 0.55);
+   display: flex;
+*** End Patch
+[2m2025-11-29T18:55:02.509126Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
+[2m2025-11-29T18:57:44.900789Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:57:45.229775Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:57:45.229812Z[0m [32m INFO[0m ghost commit captured: 07b40049ca61e2bfe23e4e13575a9f61486945ac
+[2m2025-11-29T18:57:45.229821Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:00:54.668309Z[0m [32m INFO[0m spawning ghost snapshot task

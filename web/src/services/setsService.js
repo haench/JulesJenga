@@ -1,12 +1,13 @@
 import {
+  db,
+  auth,
   collection,
   getDocs,
   addDoc,
   serverTimestamp,
   query,
   orderBy,
-} from 'firebase/firestore';
-import { db, auth } from '../firebase.js';
+} from '../firebase.js';
 
 const COLLECTION = 'questionSets';
 
