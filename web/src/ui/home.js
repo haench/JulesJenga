@@ -5,6 +5,12 @@ import { signInWithGoogle } from '../auth.js';
 export async function renderHome(root, { onStart, onUpload, user }) {
   root.innerHTML = '';
 
+  const logo = document.createElement('img');
+  logo.src = './assets/julesjenga_logo.svg';
+  logo.alt = 'JulesJenga Logo';
+  logo.className = 'home-logo';
+  root.appendChild(logo);
+
   const homeCard = document.createElement('section');
   homeCard.className = 'card home-card';
   const greet = document.createElement('p');

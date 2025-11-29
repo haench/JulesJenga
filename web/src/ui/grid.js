@@ -1,12 +1,15 @@
 import { getQuestionForTile, isTileUsed, markTileUsed } from '../state/appState.js';
 
 export function renderGrid(container, onSelect) {
+  const gridWrapper = document.createElement('section');
+  gridWrapper.className = 'card grid-wrapper';
+
   const grid = document.createElement('div');
   grid.className = 'grid';
   const help = document.createElement('p');
   help.className = 'muted grid-help';
   help.textContent = 'Tippe auf das Feld mit der Nummer deines Jengasteins.';
-  container.appendChild(help);
+  gridWrapper.appendChild(help);
   for (let i = 1; i <= 54; i++) {
     const tile = document.createElement('button');
     tile.className = 'tile';
@@ -28,6 +31,7 @@ export function renderGrid(container, onSelect) {
     }
     grid.appendChild(tile);
   }
-  container.appendChild(grid);
+  gridWrapper.appendChild(grid);
+  container.appendChild(gridWrapper);
   return grid;
 }

@@ -46,6 +46,13 @@ body {
   background: var(--color-bg);
 }
 
+.home-logo {
+  display: block;
+  margin: 0 auto 12px;
+  max-width: 240px;
+  width: 80%;
+}
+
 button,
 select,
 input[type="file"] {
@@ -190,6 +197,31 @@ input[type="file"]:focus-visible {
   gap: 10px;
   width: min(480px, 100%);
   margin-top: 20px;
+}
+
+.grid-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.grid-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../assets/julesjenga_logo.svg') center/70% no-repeat;
+  opacity: 0.08;
+  filter: saturate(0.75);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid-wrapper > * {
+  position: relative;
+  z-index: 1;
 }
 
 .tile {
