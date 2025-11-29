@@ -11,6 +11,10 @@ export function renderUpload(root, { onDone }) {
   fileInput.type = 'file';
   fileInput.accept = '.txt,text/plain';
 
+  const hint = document.createElement('p');
+  hint.className = 'muted';
+  hint.textContent = 'File format: first line = title, next 54 lines = questions. Max 280 chars per question.';
+
   const status = document.createElement('div');
   status.className = 'status';
 
@@ -43,6 +47,7 @@ export function renderUpload(root, { onDone }) {
   backBtn.addEventListener('click', () => onDone?.());
 
   root.appendChild(heading);
+  root.appendChild(hint);
   root.appendChild(fileInput);
   root.appendChild(uploadBtn);
   root.appendChild(backBtn);

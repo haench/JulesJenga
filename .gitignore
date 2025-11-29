@@ -12,6 +12,7 @@ yarn-error.log*
 # Env/config
 .env*
 .firebase/
+.codx/
 
 # Editor/OS
 .DS_Store

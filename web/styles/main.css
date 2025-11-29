@@ -12,9 +12,8 @@ body {
 
 #app {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px;
+  justify-content: center;
+  padding: 32px 16px;
 }
 
 button,
@@ -33,6 +32,74 @@ select:focus-visible,
 input[type="file"]:focus-visible {
   outline: 3px solid #2563eb;
   outline-offset: 2px;
+}
+
+.layout {
+  width: min(960px, 100%);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.view-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+.primary:disabled {
+  background: #93c5fd;
+  border-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.secondary {
+  background: #e2e8f0;
+}
+
+.ghost {
+  background: transparent;
+  border-color: #cbd5e1;
+}
+
+.muted {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.status {
+  margin-top: 8px;
+  color: #334155;
+  font-size: 0.95rem;
 }
 
 .grid {
@@ -54,6 +121,12 @@ input[type="file"]:focus-visible {
 .tile.used {
   background: #cbd5e1;
   color: #475569;
+}
+
+.grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .modal-overlay {

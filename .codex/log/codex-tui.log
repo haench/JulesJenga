@@ -1955,3 +1955,39 @@
 [2m2025-11-29T18:44:33.586874Z[0m [32m INFO[0m ghost commit captured: e0ca006a2ebe2e47c2c41b1ff81ea2c03e17b409
 [2m2025-11-29T18:44:33.586879Z[0m [32m INFO[0m ghost snapshot gate marked ready
 [2m2025-11-29T18:47:40.306735Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:47:40.602958Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:47:40.602985Z[0m [32m INFO[0m ghost commit captured: b8391e38c90854608a82e14a82caa70d634fd425
+[2m2025-11-29T18:47:40.602990Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:47:52.243974Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .github/workflows/firebase-hosting-merge.yml
+@@
+-      - uses: actions/setup-node@v4
+-        with:
+-          node-version: 18
+-          cache: npm
+-          cache-dependency-path: web/package-lock.json
++      - uses: actions/setup-node@v4
++        with:
++          node-version: 20
++          cache: npm
++          cache-dependency-path: web/package-lock.json
+*** End Patch
+[2m2025-11-29T18:47:55.865291Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .github/workflows/firebase-hosting-pull-request.yml
+@@
+-      - uses: actions/setup-node@v4
+-        with:
+-          node-version: 18
+-          cache: npm
+-          cache-dependency-path: web/package-lock.json
++      - uses: actions/setup-node@v4
++        with:
++          node-version: 20
++          cache: npm
++          cache-dependency-path: web/package-lock.json
+*** End Patch
+[2m2025-11-29T18:50:28.235368Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:50:28.553797Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:50:28.553830Z[0m [32m INFO[0m ghost commit captured: 53d4d99c817dbd403c591af9f262dd4e682cd9ab
+[2m2025-11-29T18:50:28.553837Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:53:29.521204Z[0m [32m INFO[0m spawning ghost snapshot task

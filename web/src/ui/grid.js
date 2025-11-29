@@ -3,6 +3,10 @@ import { getQuestionForTile, isTileUsed, markTileUsed } from '../state/appState.
 export function renderGrid(container, onSelect) {
   const grid = document.createElement('div');
   grid.className = 'grid';
+  const help = document.createElement('p');
+  help.className = 'muted';
+  help.textContent = 'Tap a tile to reveal its question. Used tiles are dimmed for this session.';
+  container.appendChild(help);
   for (let i = 1; i <= 54; i++) {
     const tile = document.createElement('button');
     tile.className = 'tile';
