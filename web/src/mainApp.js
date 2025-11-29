@@ -3,7 +3,6 @@ import { renderGrid } from './ui/grid.js';
 import { renderUpload } from './ui/upload.js';
 import { createModal } from './ui/modal.js';
 import { getStateSnapshot, setActiveSet } from './state/appState.js';
-import { auth } from './firebase.js';
 import { listenForAuthChanges } from './auth.js';
 
 export function initApp(rootEl) {

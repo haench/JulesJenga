@@ -40,3 +40,4 @@
 {"session_id":"019ad097-4297-76e2-854e-3cf022232e18","ts":1764445917,"text":"well, can you add a console log for the user status?"}
 {"session_id":"019ad097-4297-76e2-854e-3cf022232e18","ts":1764446161,"text":"There is still somethign wrong with the login - i dont get prompted for it"}
 {"session_id":"019ad097-4297-76e2-854e-3cf022232e18","ts":1764447004,"text":"Somethign is broken- the div with id=\"app\" is just empty"}
+{"session_id":"019ad097-4297-76e2-854e-3cf022232e18","ts":1764447246,"text":"Uncaught SyntaxError: The requested module './firebase.js' does not provide an export named 'auth' (at mainApp.js:6:10)"}
