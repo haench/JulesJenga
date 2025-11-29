@@ -1,0 +1,1142 @@
+[2m2025-11-29T17:08:00.972645Z[0m [33m WARN[0m failed to paste image: no image on clipboard: The clipboard contents were not available in the requested format or the clipboard is empty.
+[2m2025-11-29T17:08:08.856783Z[0m [33m WARN[0m failed to paste image: no image on clipboard: The clipboard contents were not available in the requested format or the clipboard is empty.
+[2m2025-11-29T17:08:12.707175Z[0m [33m WARN[0m failed to paste image: no image on clipboard: The clipboard contents were not available in the requested format or the clipboard is empty.
+[2m2025-11-29T17:08:21.374216Z[0m [33m WARN[0m failed to paste image: no image on clipboard: The clipboard contents were not available in the requested format or the clipboard is empty.
+[2m2025-11-29T17:08:39.622662Z[0m [33m WARN[0m failed to paste image: no image on clipboard: The clipboard contents were not available in the requested format or the clipboard is empty.
+[2m2025-11-29T17:09:01.712450Z[0m [33m WARN[0m failed to paste image: no image on clipboard: The clipboard contents were not available in the requested format or the clipboard is empty.
+[2m2025-11-29T17:09:06.070268Z[0m [33m WARN[0m failed to paste image: no image on clipboard: The clipboard contents were not available in the requested format or the clipboard is empty.
+[2m2025-11-29T17:10:01.245340Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T17:10:01.525875Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T17:10:01.525923Z[0m [32m INFO[0m ghost commit captured: 420e637717729d22bac14186568b3872e1b09934
+[2m2025-11-29T17:10:01.525940Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T17:10:05.647355Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .specify/memory/constitution.md"}
+[2m2025-11-29T17:10:08.702177Z[0m [32m INFO[0m ToolCall: update_plan {"plan":[{"status":"in_progress","step":"Review constitution template and related templates to map placeholders and current guidance alignment"},{"status":"pending","step":"Derive principle content and governance updates per user request; draft updated constitution with version/dates"},{"status":"pending","step":"Propagate consistency across templates/docs; finalize Sync Impact Report and summary"}], "explanation":"Complex governance update requires multiple files and consistency checks"}
+[2m2025-11-29T17:10:09.898410Z[0m [32m INFO[0m ToolCall: shell_command {"command":"ls"}
+[2m2025-11-29T17:10:12.968454Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-ChildItem .specify -Recurse"}
+[2m2025-11-29T17:10:15.086190Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .specify/templates/plan-template.md"}
+[2m2025-11-29T17:10:17.500541Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .specify/templates/spec-template.md"}
+[2m2025-11-29T17:10:19.341501Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .specify/templates/tasks-template.md"}
+[2m2025-11-29T17:10:22.446455Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-ChildItem .specify/templates/commands"}
+[2m2025-11-29T17:10:24.986416Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .specify/templates/agent-file-template.md"}
+[2m2025-11-29T17:10:26.902439Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .specify/templates/checklist-template.md"}
+[2m2025-11-29T17:10:29.776489Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-ChildItem .codex"}
+[2m2025-11-29T17:10:33.987346Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Date -Format yyyy-MM-dd"}
+[2m2025-11-29T17:11:28.810032Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .specify/memory/constitution.md
+@@
+-# [PROJECT_NAME] Constitution
+-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+-
+-## Core Principles
+-
+-### [PRINCIPLE_1_NAME]
+-<!-- Example: I. Library-First -->
+-[PRINCIPLE_1_DESCRIPTION]
+-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+-
+-### [PRINCIPLE_2_NAME]
+-<!-- Example: II. CLI Interface -->
+-[PRINCIPLE_2_DESCRIPTION]
+-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args ƒÅ' stdout, errors ƒÅ' stderr; Support JSON + human-readable formats -->
+-
+-### [PRINCIPLE_3_NAME]
+-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
+-[PRINCIPLE_3_DESCRIPTION]
+-<!-- Example: TDD mandatory: Tests written ƒÅ' User approved ƒÅ' Tests fail ƒÅ' Then implement; Red-Green-Refactor cycle strictly enforced -->
+-
+-### [PRINCIPLE_4_NAME]
+-<!-- Example: IV. Integration Testing -->
+-[PRINCIPLE_4_DESCRIPTION]
+-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+-
+-### [PRINCIPLE_5_NAME]
+-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
+-[PRINCIPLE_5_DESCRIPTION]
+-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+-
+-## [SECTION_2_NAME]
+-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+-
+-[SECTION_2_CONTENT]
+-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+-
+-## [SECTION_3_NAME]
+-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+-
+-[SECTION_3_CONTENT]
+-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+-
+-## Governance
+-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+-
+-[GOVERNANCE_RULES]
+-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+-
+-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
+-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
++<!--
++Sync Impact Report
++Version: N/A -> 1.0.0
++Modified principles: New — I. Code Quality & Maintainability; II. Testing Discipline & Coverage; III. User Experience Consistency & Accessibility; IV. Performance & Efficiency Targets; V. Decision Traceability & Delivery Governance
++Added sections: Quality Standards & Non-Functional Requirements; Development Workflow & Quality Gates
++Removed sections: None
++Templates requiring updates: .specify/templates/plan-template.md ✅; .specify/templates/spec-template.md ✅; .specify/templates/tasks-template.md ✅; .specify/templates/commands/* ⚠ (not present)
++Follow-up TODOs: None
++-->
++
++# JulesJenga Constitution
++
++## Core Principles
++
++### I. Code Quality & Maintainability
++Every change MUST improve or preserve readability, maintainability, and safety. Mandatory practices: consistent formatting and linting; small, cohesive changes with clear intent; peer review before merge; inline documentation for non-obvious logic and public interfaces; dead code and unused flags removed. Rationale: disciplined code reduces defects, lowers onboarding cost, and keeps future changes fast.
++
++### II. Testing Discipline & Coverage
++Automated tests MUST accompany all functional changes: unit tests for logic, contract/integration tests for interfaces, and regression tests for found defects. Critical flows (auth, payments, data integrity) require explicit negative tests. Tests MUST be deterministic and run in CI; failing or flaky tests block release. Rationale: predictable releases depend on fast, trusted feedback.
++
++### III. User Experience Consistency & Accessibility
++Implementations MUST adhere to the agreed design system (layout, components, tokens, copy style) and WCAG 2.1 AA accessibility standards. All user-facing changes require UX acceptance criteria: consistent navigation, clear error states, resilient offline/poor-network behavior where applicable, and localized text handling. Rationale: consistent UX builds trust and reduces user friction across features.
++
++### IV. Performance & Efficiency Targets
++Each feature MUST define and honor performance budgets (e.g., p95 latency, frame rate, memory/CPU bounds) and confirm them with measurement. Hot paths require profiling before optimization; any regression beyond agreed budgets blocks release. Backward-incompatible performance trade-offs need documented approval and mitigation. Rationale: performance is a user-visible feature and protects operational costs.
++
++### V. Decision Traceability & Delivery Governance
++Material technical decisions MUST be traceable to these principles via ADRs or design notes, including options considered and their principle alignment. Coupling, complexity, or tech-debt acceptance requires explicit, time-bound remediation plans. Rationale: transparent decisions keep the system coherent and auditable.
++
++## Quality Standards & Non-Functional Requirements
++
++- Security, privacy, and compliance requirements inherit the strictest applicable policy; do not store or transmit secrets in logs or telemetry.
++- Dependencies MUST be current on security patches; deprecated packages require replacement plans before acceptance.
++- Observability: structured logs, actionable alerts, and minimal SLOs for availability and latency are required for any new surface.
++- Rollout safety: feature flags or gradual deployments are required for risky changes; rollback paths must be validated.
++
++## Development Workflow & Quality Gates
++
++- Definition of Ready: principle alignment checked, performance budgets defined, UX acceptance criteria captured, and test strategy agreed before implementation begins.
++- Definition of Done: code merged only after tests pass in CI, UX acceptance is verified, performance checks meet budgets, and documentation (code-level and user-facing where applicable) is updated.
++- Reviews: PRs must cite which principles are addressed; reviewers block merges when evidence is missing (tests, measurements, UX proof).
++- Releases: no releases with unresolved flaky tests, unmeasured performance risks, or UX guideline deviations without explicit, time-limited exceptions approved by engineering leadership.
++
++## Governance
++
++- Authority: This constitution supersedes other engineering practice documents for conflicting topics.
++- Amendments: Proposed via PR with redlines and rationale; require approval from engineering lead and one UX and one QA representative. Migration or remediation plans must accompany changes that alter obligations.
++- Versioning: Semantic versioning for this document (MAJOR for breaking/removal of principles, MINOR for new or expanded principles/sections, PATCH for clarifications). Last Amended updates on every accepted change.
++- Compliance: Feature plans and PR checklists must include a Constitution Check; periodic audits (at least quarterly) verify adherence, and gaps require tracked remediation tasks.
++
++**Version**: 1.0.0 | **Ratified**: 2025-11-29 | **Last Amended**: 2025-11-29
+*** End Patch
+[2m2025-11-29T17:11:32.414988Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Delete File: .specify/memory/constitution.md
+*** End Patch
+[2m2025-11-29T17:12:10.582665Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Add File: .specify/memory/constitution.md
++<!--
++Sync Impact Report
++Version: N/A -> 1.0.0
++Modified principles: New — I. Code Quality & Maintainability; II. Testing Discipline & Coverage; III. User Experience Consistency & Accessibility; IV. Performance & Efficiency Targets; V. Decision Traceability & Delivery Governance
++Added sections: Quality Standards & Non-Functional Requirements; Development Workflow & Quality Gates
++Removed sections: None
++Templates requiring updates: .specify/templates/plan-template.md ✅; .specify/templates/spec-template.md ✅; .specify/templates/tasks-template.md ✅; .specify/templates/commands/* ⚠ (not present)
++Follow-up TODOs: None
++-->
++
++# JulesJenga Constitution
++
++## Core Principles
++
++### I. Code Quality & Maintainability
++Every change MUST improve or preserve readability, maintainability, and safety. Mandatory practices: consistent formatting and linting; small, cohesive changes with clear intent; peer review before merge; inline documentation for non-obvious logic and public interfaces; dead code and unused flags removed. Rationale: disciplined code reduces defects, lowers onboarding cost, and keeps future changes fast.
++
++### II. Testing Discipline & Coverage
++Automated tests MUST accompany all functional changes: unit tests for logic, contract/integration tests for interfaces, and regression tests for found defects. Critical flows (auth, payments, data integrity) require explicit negative tests. Tests MUST be deterministic and run in CI; failing or flaky tests block release. Rationale: predictable releases depend on fast, trusted feedback.
++
++### III. User Experience Consistency & Accessibility
++Implementations MUST adhere to the agreed design system (layout, components, tokens, copy style) and WCAG 2.1 AA accessibility standards. All user-facing changes require UX acceptance criteria: consistent navigation, clear error states, resilient offline/poor-network behavior where applicable, and localized text handling. Rationale: consistent UX builds trust and reduces user friction across features.
++
++### IV. Performance & Efficiency Targets
++Each feature MUST define and honor performance budgets (e.g., p95 latency, frame rate, memory/CPU bounds) and confirm them with measurement. Hot paths require profiling before optimization; any regression beyond agreed budgets blocks release. Backward-incompatible performance trade-offs need documented approval and mitigation. Rationale: performance is a user-visible feature and protects operational costs.
++
++### V. Decision Traceability & Delivery Governance
++Material technical decisions MUST be traceable to these principles via ADRs or design notes, including options considered and their principle alignment. Coupling, complexity, or tech-debt acceptance requires explicit, time-bound remediation plans. Rationale: transparent decisions keep the system coherent and auditable.
++
++## Quality Standards & Non-Functional Requirements
++
++- Security, privacy, and compliance requirements inherit the strictest applicable policy; do not store or transmit secrets in logs or telemetry.
++- Dependencies MUST be current on security patches; deprecated packages require replacement plans before acceptance.
++- Observability: structured logs, actionable alerts, and minimal SLOs for availability and latency are required for any new surface.
++- Rollout safety: feature flags or gradual deployments are required for risky changes; rollback paths must be validated.
++
++## Development Workflow & Quality Gates
++
++- Definition of Ready: principle alignment checked, performance budgets defined, UX acceptance criteria captured, and test strategy agreed before implementation begins.
++- Definition of Done: code merged only after tests pass in CI, UX acceptance is verified, performance checks meet budgets, and documentation (code-level and user-facing where applicable) is updated.
++- Reviews: PRs must cite which principles are addressed; reviewers block merges when evidence is missing (tests, measurements, UX proof).
++- Releases: no releases with unresolved flaky tests, unmeasured performance risks, or UX guideline deviations without explicit, time-limited exceptions approved by engineering leadership.
++
++## Governance
++
++- Authority: This constitution supersedes other engineering practice documents for conflicting topics.
++- Amendments: Proposed via PR with redlines and rationale; require approval from engineering lead and one UX and one QA representative. Migration or remediation plans must accompany changes that alter obligations.
++- Versioning: Semantic versioning for this document (MAJOR for breaking/removal of principles, MINOR for new or expanded principles/sections, PATCH for clarifications). Last Amended updates on every accepted change.
++- Compliance: Feature plans and PR checklists must include a Constitution Check; periodic audits (at least quarterly) verify adherence, and gaps require tracked remediation tasks.
++
++**Version**: 1.0.0 | **Ratified**: 2025-11-29 | **Last Amended**: 2025-11-29
+*** End Patch
+[2m2025-11-29T17:12:25.223331Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .specify/templates/plan-template.md
+@@
+ ## Constitution Check
+ 
+ *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+ 
+-[Gates determined based on constitution file]
++- Code Quality & Maintainability: planned work lists lint/format tools, small cohesive slices, and removal of dead code; review plan identified.
++- Testing Discipline & Coverage: test strategy covers unit + integration/contract for each interface, regression tests for known defects, and CI determinism.
++- User Experience Consistency & Accessibility: UX acceptance criteria defined, design system references linked, accessibility (WCAG 2.1 AA) acceptance noted.
++- Performance & Efficiency Targets: performance budgets (e.g., p95 latency, memory/CPU/frame budgets) set with measurement approach and rollback plan.
++- Decision Traceability & Delivery Governance: ADR/design note planned for material decisions with principle mapping; risk/exception approvals identified.
+*** End Patch
+[2m2025-11-29T17:12:56.372807Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .specify/templates/spec-template.md
+@@
+ ## User Scenarios & Testing *(mandatory)*
+ 
+ <!--
+   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
+   Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
+   you should still have a viable MVP (Minimum Viable Product) that delivers value.
+ 
+   Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
+   Think of each story as a standalone slice of functionality that can be:
+   - Developed independently
+   - Tested independently
+   - Deployed independently
+   - Demonstrated to users independently
++
++  Each story MUST include UX acceptance (alignment with design system + accessibility) and a measurable performance expectation where relevant.
+ -->
+@@
+ ## Requirements *(mandatory)*
+ 
+ <!--
+   ACTION REQUIRED: The content in this section represents placeholders.
+   Fill them out with the right functional requirements.
+@@
+ ### Functional Requirements
+ 
+ - **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
+@@
+ - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
+ - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+ 
++### Non-Functional Requirements
++
++- **NFR-001**: UX MUST align with [design system link/tokens]; accessibility meets WCAG 2.1 AA for [screens/surfaces].
++- **NFR-002**: Performance budget: [e.g., p95 <200ms for endpoint X, <16ms frame time], validated via [measurement approach].
++- **NFR-003**: Reliability/observability: [logging/alerting requirements, SLOs, rollout/rollback guardrails].
++- **NFR-004**: Security/privacy: [data handling, PII protection, dependencies posture].
++
+ ### Key Entities *(include if feature involves data)*
+*** End Patch
+[2m2025-11-29T17:13:06.657969Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .specify/templates/tasks-template.md
+@@
+ **Input**: Design documents from `/specs/[###-feature-name]/`
+ **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
+ 
+-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
++**Tests**: Automated tests are REQUIRED for every functional change (unit + integration/contract per interface). Add explicit regression tests for fixed defects.
+ 
+ **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+@@
+-## Phase 1: Setup (Shared Infrastructure)
++## Phase 1: Setup (Shared Infrastructure)
+*** End Patch
+[2m2025-11-29T17:13:20.600546Z[0m [32m INFO[0m interrupt received: abort current task, if any
+[2m2025-11-29T17:13:30.067035Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T17:13:30.350920Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T17:13:30.350954Z[0m [32m INFO[0m ghost commit captured: a5d48d206652fb7ce5a6b1243190c54edc8c8377
+[2m2025-11-29T17:13:30.350964Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T17:13:40.048422Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .specify/templates/tasks-template.md"}
+[2m2025-11-29T17:13:48.462657Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .specify/templates/tasks-template.md
+@@
+-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
++**Tests**: Automated tests are REQUIRED for every functional change (unit plus integration/contract per interface). Add explicit regression tests for fixed defects.
+@@
+-### Tests for User Story 1 (OPTIONAL - only if tests requested) ƒsÿ‹÷?
++### Tests for User Story 1 (required) ƒsÿ‹÷?
+@@
+-### Tests for User Story 2 (OPTIONAL - only if tests requested) ƒsÿ‹÷?
++### Tests for User Story 2 (required) ƒsÿ‹÷?
+@@
+-### Tests for User Story 3 (OPTIONAL - only if tests requested) ƒsÿ‹÷?
++### Tests for User Story 3 (required) ƒsÿ‹÷?
+*** End Patch
+[2m2025-11-29T17:13:54.369110Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .specify/templates/tasks-template.md
+@@
+-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
++**Tests**: Automated tests are REQUIRED for every functional change (unit plus integration/contract per interface). Add explicit regression tests for fixed defects.
+@@
+-### Tests for User Story 1 (OPTIONAL - only if tests requested) ƒsÿ‹÷?
++### Tests for User Story 1 (required) ƒsÿ‹÷?
+@@
+-### Tests for User Story 2 (OPTIONAL - only if tests requested) ƒsÿ‹÷?
++### Tests for User Story 2 (required) ƒsÿ‹÷?
+@@
+-### Tests for User Story 3 (OPTIONAL - only if tests requested) ƒsÿ‹÷?
++### Tests for User Story 3 (required) ƒsÿ‹÷?
+*** End Patch
+[2m2025-11-29T17:13:58.465160Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .specify/templates/tasks-template.md
+@@
+-### Tests for User Story 1 (OPTIONAL - only if tests requested) ƒsÿ‹÷?
++### Tests for User Story 1 (required) ƒsÿ‹÷?
+*** End Patch
+[2m2025-11-29T17:14:01.893484Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .specify/templates/tasks-template.md | Select-String \"Tests for User Story\""}
+[2m2025-11-29T17:14:09.128982Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: .specify/templates/tasks-template.md
+@@
+-### Tests for User Story 1 (OPTIONAL - only if tests requested) ƒsÿ‹÷?
+-
+-> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+-
+-- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
+-- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
++### Tests for User Story 1 (required)
++
++> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
++
++- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
++- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
+*** End Patch
+[2m2025-11-29T17:14:13.419938Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Delete File: .specify/templates/tasks-template.md
+*** End Patch
+[2m2025-11-29T17:22:43.918792Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Add File: .specify/templates/tasks-template.md
++---
++
++description: "Task list template for feature implementation"
++---
++
++# Tasks: [FEATURE NAME]
++
++**Input**: Design documents from `/specs/[###-feature-name]/`
++**Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
++
++**Tests**: Automated tests are REQUIRED for every functional change (unit plus integration/contract per interface). Add explicit regression tests for fixed defects.
++
++**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
++
++## Format: `[ID] [P?] [Story] Description`
++
++- **[P]**: Can run in parallel (different files, no dependencies)
++- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
++- Include exact file paths in descriptions
++
++## Path Conventions
++
++- **Single project**: `src/`, `tests/` at repository root
++- **Web app**: `backend/src/`, `frontend/src/`
++- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
++- Paths shown below assume single project - adjust based on plan.md structure
++
++<!-- 
++  ============================================================================
++  IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
++  
++  The /speckit.tasks command MUST replace these with actual tasks based on:
++  - User stories from spec.md (with their priorities P1, P2, P3...)
++  - Feature requirements from plan.md
++  - Entities from data-model.md
++  - Endpoints from contracts/
++  
++  Tasks MUST be organized by user story so each story can be:
++  - Implemented independently
++  - Tested independently
++  - Delivered as an MVP increment
++  
++  DO NOT keep these sample tasks in the generated tasks.md file.
++  ============================================================================
++-->
++
++## Phase 1: Setup (Shared Infrastructure)
++
++**Purpose**: Project initialization and basic structure
++
++- [ ] T001 Create project structure per implementation plan
++- [ ] T002 Initialize [language] project with [framework] dependencies
++- [ ] T003 [P] Configure linting and formatting tools
++
++---
++
++## Phase 2: Foundational (Blocking Prerequisites)
++
++**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
++
++**CRITICAL**: No user story work can begin until this phase is complete
++
++Examples of foundational tasks (adjust based on your project):
++
++- [ ] T004 Setup database schema and migrations framework
++- [ ] T005 [P] Implement authentication/authorization framework
++- [ ] T006 [P] Setup API routing and middleware structure
++- [ ] T007 Create base models/entities that all stories depend on
++- [ ] T008 Configure error handling and logging infrastructure
++- [ ] T009 Setup environment configuration management
++
++**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
++
++---
++
++## Phase 3: User Story 1 - [Title] (Priority: P1) MVP
++
++**Goal**: [Brief description of what this story delivers]
++
++**Independent Test**: [How to verify this story works on its own]
++
++### Tests for User Story 1 (required)
++
++> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
++
++- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
++- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
++
++### Implementation for User Story 1
++
++- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
++- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
++- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
++- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
++- [ ] T016 [US1] Add validation and error handling
++- [ ] T017 [US1] Add logging for user story 1 operations
++
++**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
++
++---
++
++## Phase 4: User Story 2 - [Title] (Priority: P2)
++
++**Goal**: [Brief description of what this story delivers]
++
++**Independent Test**: [How to verify this story works on its own]
++
++### Tests for User Story 2 (required)
++
++- [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
++- [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
++
++### Implementation for User Story 2
++
++- [ ] T020 [P] [US2] Create [Entity] model in src/models/[entity].py
++- [ ] T021 [US2] Implement [Service] in src/services/[service].py
++- [ ] T022 [US2] Implement [endpoint/feature] in src/[location]/[file].py
++- [ ] T023 [US2] Integrate with User Story 1 components (if needed)
++
++**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
++
++---
++
++## Phase 5: User Story 3 - [Title] (Priority: P3)
++
++**Goal**: [Brief description of what this story delivers]
++
++**Independent Test**: [How to verify this story works on its own]
++
++### Tests for User Story 3 (required)
++
++- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
++- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
++
++### Implementation for User Story 3
++
++- [ ] T026 [P] [US3] Create [Entity] model in src/models/[entity].py
++- [ ] T027 [US3] Implement [Service] in src/services/[service].py
++- [ ] T028 [US3] Implement [endpoint/feature] in src/[location]/[file].py
++
++**Checkpoint**: All user stories should now be independently functional
++
++---
++
++[Add more user story phases as needed, following the same pattern]
++
++---
++
++## Phase N: Polish & Cross-Cutting Concerns
++
++**Purpose**: Improvements that affect multiple user stories
++
++- [ ] TXXX [P] Documentation updates in docs/
++- [ ] TXXX Code cleanup and refactoring
++- [ ] TXXX Performance optimization across all stories
++- [ ] TXXX [P] Additional unit tests in tests/unit/
++- [ ] TXXX Security hardening
++- [ ] TXXX Run quickstart.md validation
++
++---
++
++## Dependencies & Execution Order
++
++### Phase Dependencies
++
++- **Setup (Phase 1)**: No dependencies - can start immediately
++- **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
++- **User Stories (Phase 3+)**: All depend on Foundational phase completion
++  - User stories can then proceed in parallel (if staffed)
++  - Or sequentially in priority order (P1 → P2 → P3)
++- **Polish (Final Phase)**: Depends on all desired user stories being complete
++
++### User Story Dependencies
++
++- **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
++- **User Story 2 (P2)**: Can start after Foundational (Phase 2) - May integrate with US1 but should be independently testable
++- **User Story 3 (P3)**: Can start after Foundational (Phase 2) - May integrate with US1/US2 but should be independently testable
++
++### Within Each User Story
++
++- Tests MUST be written and FAIL before implementation
++- Models before services
++- Services before endpoints
++- Core implementation before integration
++- Story complete before moving to next priority
++
++### Parallel Opportunities
++
++- All Setup tasks marked [P] can run in parallel
++- All Foundational tasks marked [P] can run in parallel (within Phase 2)
++- Once Foundational phase completes, all user stories can start in parallel (if team capacity allows)
++- All tests for a user story marked [P] can run in parallel
++- Models within a story marked [P] can run in parallel
++- Different user stories can be worked on in parallel by different team members
++
++---
++
++## Parallel Example: User Story 1
++
++```bash
++# Launch all tests for User Story 1 together:
++Task: "Contract test for [endpoint] in tests/contract/test_[name].py"
++Task: "Integration test for [user journey] in tests/integration/test_[name].py"
++
++# Launch all models for User Story 1 together:
++Task: "Create [Entity1] model in src/models/[entity1].py"
++Task: "Create [Entity2] model in src/models/[entity2].py"
++```
++
++---
++
++## Implementation Strategy
++
++### MVP First (User Story 1 Only)
++
++1. Complete Phase 1: Setup
++2. Complete Phase 2: Foundational (CRITICAL - blocks all stories)
++3. Complete Phase 3: User Story 1
++4. **STOP and VALIDATE**: Test User Story 1 independently
++5. Deploy/demo if ready
++
++### Incremental Delivery
++
++1. Complete Setup + Foundational → Foundation ready
++2. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
++3. Add User Story 2 → Test independently → Deploy/Demo
++4. Add User Story 3 → Test independently → Deploy/Demo
++5. Each story adds value without breaking previous stories
++
++### Parallel Team Strategy
++
++With multiple developers:
++
++1. Team completes Setup + Foundational together
++2. Once Foundational is done:
++   - Developer A: User Story 1
++   - Developer B: User Story 2
++   - Developer C: User Story 3
++3. Stories complete and integrate independently
++
++---
++
++## Notes
++
++- [P] tasks = different files, no dependencies
++- [Story] label maps task to specific user story for traceability
++- Each user story should be independently completable and testable
++- Verify tests fail before implementing
++- Commit after each task or logical group
++- Stop at any checkpoint to validate story independently
++- Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
+*** End Patch
+[2m2025-11-29T17:23:12.551770Z[0m [32m INFO[0m ToolCall: update_plan {"plan":[{"status":"completed","step":"Review constitution template and related templates to map placeholders and current guidance alignment"},{"status":"completed","step":"Derive principle content and governance updates per user request; draft updated constitution with version/dates"},{"status":"completed","step":"Propagate consistency across templates/docs; finalize Sync Impact Report and summary"}]}
+[2m2025-11-29T17:27:34.432730Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T17:27:34.725576Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T17:27:34.725609Z[0m [32m INFO[0m ghost commit captured: 0e00d01f09ec23caa61b56f461234ba558d1fb79
+[2m2025-11-29T17:27:34.725618Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T17:55:43.185136Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T17:55:43.460533Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T17:55:43.460564Z[0m [32m INFO[0m ghost commit captured: 30e65c5a58aaa73d51edc16e327e25b6c2c246b2
+[2m2025-11-29T17:55:43.460570Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T17:57:51.181287Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T17:57:51.472229Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T17:57:51.472264Z[0m [32m INFO[0m ghost commit captured: 100cd0de0b16e1e2fca1ed4e648a25349d09b5d4
+[2m2025-11-29T17:57:51.472273Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T17:59:28.092813Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T17:59:28.383293Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T17:59:28.383324Z[0m [32m INFO[0m ghost commit captured: e72c081351000b494f718c405a7a2cf2f5e8cf85
+[2m2025-11-29T17:59:28.383329Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T17:59:53.676256Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Add File: specs/001-julesjenga/spec.md
++# Feature Specification: JulesJenga
++
++**Feature Branch**: `001-julesjenga`  
++**Created**: 2025-11-29  
++**Status**: Draft  
++**Input**: User description: "Create a mobile-friendly web app (plain HTML/JS/CSS) hosted on Firebase. Uses Firebase Authentication (handled externally) and Firestore. App name: JulesJenga. After login, greet user by name, show Start button, Upload button, dropdown of available question sets (shared between users). Question set = title + exactly 54 questions. Upload: text file where line 1 is title and lines 2–55 are questions; store in Firestore for persistence. Start: go to 6×9 grid numbered 1–54; tapping a tile opens the corresponding question; closing returns to grid; opened tiles marked. Opened tiles do not persist across sessions."
++
++## User Scenarios & Testing *(mandatory)*
++
++### User Story 1 - Choose and start game (Priority: P1)
++
++As an authenticated user, I want to pick a question set and start the game so I can play immediately.
++
++**Why this priority**: Core entry path for every game session.
++
++**Independent Test**: User can select a set from dropdown, press Start, and reach the grid with the chosen set loaded.
++
++**Acceptance Scenarios**:
++
++1. **Given** user is authenticated and at the home screen, **When** they open the dropdown and choose a set, **Then** the selection is reflected and Start becomes enabled.
++2. **Given** a set is selected, **When** the user taps Start, **Then** they see a 6×9 grid labeled 1–54 loaded with that set’s questions (ready to open).
++
++### User Story 2 - Play through tiles (Priority: P1)
++
++As a player, I want to tap tiles to reveal questions and track which tiles were used during this session.
++
++**Why this priority**: Primary gameplay loop.
++
++**Independent Test**: From the grid, user taps any number 1–54, sees the right question, closes it, and the tile shows as used; state resets on reload.
++
++**Acceptance Scenarios**:
++
++1. **Given** the grid is displayed, **When** the user taps tile 17, **Then** a modal shows question 17’s text with a close action.
++2. **Given** a question modal is open, **When** the user closes it, **Then** they return to the grid and tile 17 is visibly marked as used while other tiles remain untouched.
++3. **Given** the session ends or the page reloads, **When** the grid reappears, **Then** all tiles are unmarked (session-only state).
++
++### User Story 3 - Upload a question set (Priority: P2)
++
++As a user, I want to upload a text file with 54 questions and a title so it becomes available to everyone.
++
++**Why this priority**: Enables custom/shared content.
++
++**Independent Test**: User uploads a valid file; set appears in dropdown for all users after successful save; malformed files are rejected with clear error.
++
++**Acceptance Scenarios**:
++
++1. **Given** the user taps Upload, **When** they select a valid file (55 lines), **Then** the app parses title + 54 questions, saves to Firestore, confirms success, and the new set appears in the dropdown (after refresh or auto-refresh).
++2. **Given** the user selects a file with missing lines, **When** upload is attempted, **Then** the app blocks the upload and shows a specific error (“expected 55 lines: 1 title + 54 questions”).
++3. **Given** network loss during upload, **When** save fails, **Then** the user sees a retry option and no partial set is listed.
++
++### Edge Cases
++
++- File has more or fewer than 55 lines: reject and show precise error.
++- Duplicate titles: allow but display both; note for UX disambiguation (e.g., timestamp).
++- Empty lines within the 54 questions: reject with specific error.
++- Long question text: enforce max length (e.g., 280 chars) and validate on upload.
++- Offline at app start: show error and retry; grid unusable without data.
++- Rapid tile taps: ensure only one modal opens at a time.
++
++## Requirements *(mandatory)*
++
++### Functional Requirements
++
++- **FR-001**: System MUST list all shared question sets from Firestore in a dropdown after login.
++- **FR-002**: System MUST require a selected set before enabling Start.
++- **FR-003**: System MUST render a 6×9 grid with tiles numbered 1–54.
++- **FR-004**: System MUST open the correct question in a modal when a tile is tapped.
++- **FR-005**: System MUST mark tiles as used after viewing; this state MUST reset on reload/new session.
++- **FR-006**: System MUST accept text file uploads where line 1 = title and lines 2–55 = questions; reject invalid counts.
++- **FR-007**: System MUST persist uploaded sets to Firestore and make them available to all authenticated users.
++- **FR-008**: System MUST show clear error states for malformed uploads, network failures, and missing data.
++- **FR-009**: System MUST display the user’s name from Firebase Auth on the home screen.
++
++### Non-Functional Requirements
++
++- **NFR-001**: UX MUST be smartphone-first responsive; touch targets ≥44px; modal accessible (focus trap, ESC/close), dropdown and buttons keyboard-focusable; color contrast meets WCAG 2.1 AA.
++- **NFR-002**: Performance budgets: home-to-grid navigation <1.5s p95 on 4G; modal open <150ms p95; grid interactions maintain <16ms frame time p95; upload parse <300ms, Firestore save <2s p95.
++- **NFR-003**: Reliability/observability: show user-facing spinners/progress for loads/uploads; log errors to console with actionable messages during development; handle retries for transient Firestore errors.
++- **NFR-004**: Security/privacy: enforce Firestore security rules so only authenticated users can read/write; uploaded content contains no secrets; no PII stored beyond Firebase Auth profile.
++- **NFR-005**: Shared sets: all authenticated users can read sets; writes create new sets; deletion/update policy TBD (default: no delete path yet).
++
++### Key Entities *(include if feature involves data)*
++
++- **QuestionSet**: `{ id, title, questions[54], createdAt, createdBy }` in Firestore.
++- **UI State (ephemeral)**: `{ activeSetId, openedTileIds[] }` held in memory (not persisted).
++
++## Success Criteria *(mandatory)*
++
++### Measurable Outcomes
++
++- **SC-001**: 95% of users reach the grid from home within 1.5s on 4G.
++- **SC-002**: 95% of modal opens occur within 150ms from tile tap.
++- **SC-003**: 0 invalid (non-55-line) files are accepted; 100% show clear error.
++- **SC-004**: 100% of uploaded valid sets appear in dropdown for another authenticated user within 5s.
++- **SC-005**: Mobile usability: ≥90% of test participants (or heuristic check) can start a game and open a question without guidance on a smartphone layout.
+*** End Patch
+[2m2025-11-29T18:01:11.867989Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:01:12.169442Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:01:12.169488Z[0m [32m INFO[0m ghost commit captured: 2ff87ed22dead5f2752e187a278968fb201116a7
+[2m2025-11-29T18:01:12.169492Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:01:15.380651Z[0m [32m INFO[0m ToolCall: shell_command {"command":".specify/scripts/powershell/check-prerequisites.ps1 -Json -PathsOnly"}
+[2m2025-11-29T18:01:18.223853Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content specs/001-julesjenga/spec.md"}
+[2m2025-11-29T18:01:57.950271Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:01:58.244222Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:01:58.244259Z[0m [32m INFO[0m ghost commit captured: 82a3f822b399b8947c60ab1dc81c65bc018e0a47
+[2m2025-11-29T18:01:58.244270Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:02:02.860456Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: specs/001-julesjenga/spec.md
+@@
+ ## User Scenarios & Testing *(mandatory)*
+@@
+ ### User Story 3 - Upload a question set (Priority: P2)
+@@
+ **Acceptance Scenarios**:
+@@
+ 2. **Given** the user selects a file with missing lines, **When** upload is attempted, **Then** the app blocks the upload and shows a specific error (ƒ?oexpected 55 lines: 1 title + 54 questionsƒ??).
+ 3. **Given** network loss during upload, **When** save fails, **Then** the user sees a retry option and no partial set is listed.
+ 
+ ### Edge Cases
+@@
+ - Long question text: enforce max length (e.g., 280 chars) and validate on upload.
+ - Offline at app start: show error and retry; grid unusable without data.
+ - Rapid tile taps: ensure only one modal opens at a time.
++- Duplicate titles: allow multiple sets; disambiguate in UI (e.g., show creator/timestamp); no overwrite.
+ 
+ ## Requirements *(mandatory)*
+*** End Patch
+[2m2025-11-29T18:02:05.324888Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content -Raw specs/001-julesjenga/spec.md"}
+[2m2025-11-29T18:02:16.192562Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: specs/001-julesjenga/spec.md
+@@
+ **Status**: Draft  
+ **Input**: User description: "Create a mobile-friendly web app (plain HTML/JS/CSS) hosted on Firebase. Uses Firebase Authentication (handled externally) and Firestore. App name: JulesJenga. After login, greet user by name, show Start button, Upload button, dropdown of available question sets (shared between users). Question set = title + exactly 54 questions. Upload: text file where line 1 is title and lines 2ƒ?"55 are questions; store in Firestore for persistence. Start: go to 6Ç-9 grid numbered 1ƒ?"54; tapping a tile opens the corresponding question; closing returns to grid; opened tiles marked. Opened tiles do not persist across sessions."
+ 
++## Clarifications
++
++### Session 2025-11-29
++
++- Q: How should duplicate titles on upload be handled? → A: Allow duplicate titles; each upload creates a distinct set; show creator/timestamp in UI to disambiguate; never overwrite.
++
+ ## User Scenarios & Testing *(mandatory)*
+@@
+ - File has more or fewer than 55 lines: reject and show precise error.
+-- Duplicate titles: allow but display both; note for UX disambiguation (e.g., timestamp).
+ - Empty lines within the 54 questions: reject with specific error.
+ - Long question text: enforce max length (e.g., 280 chars) and validate on upload.
+ - Offline at app start: show error and retry; grid unusable without data.
+ - Rapid tile taps: ensure only one modal opens at a time.
++- Duplicate titles: allow multiple sets; do not overwrite; disambiguate in UI (e.g., creator/timestamp).
+@@
+ - **FR-007**: System MUST persist uploaded sets to Firestore and make them available to all authenticated users.
+ - **FR-008**: System MUST show clear error states for malformed uploads, network failures, and missing data.
+ - **FR-009**: System MUST display the userƒ?Ts name from Firebase Auth on the home screen.
++- **FR-010**: System MUST create a new QuestionSet even when the uploaded title duplicates an existing one and present disambiguation in the UI (e.g., creator or timestamp) without overwriting prior sets.
+*** End Patch
+[2m2025-11-29T18:02:20.749396Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Delete File: specs/001-julesjenga/spec.md
+*** End Patch
+[2m2025-11-29T18:03:04.616510Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: specs/001-julesjenga/spec.md
+@@
+-# Feature Specification: JulesJenga
+-
+-**Feature Branch**: `001-julesjenga`  
+-**Created**: 2025-11-29  
+-**Status**: Draft  
+-**Input**: User description: "Create a mobile-friendly web app (plain HTML/JS/CSS) hosted on Firebase. Uses Firebase Authentication (handled externally) and Firestore. App name: JulesJenga. After login, greet user by name, show Start button, Upload button, dropdown of available question sets (shared between users). Question set = title + exactly 54 questions. Upload: text file where line 1 is title and lines 2ƒ?"55 are questions; store in Firestore for persistence. Start: go to 6Ç-9 grid numbered 1ƒ?"54; tapping a tile opens the corresponding question; closing returns to grid; opened tiles marked. Opened tiles do not persist across sessions."
+-
+-## User Scenarios & Testing *(mandatory)*
+-
+-### User Story 1 - Choose and start game (Priority: P1)
+-
+-As an authenticated user, I want to pick a question set and start the game so I can play immediately.
+-
+-**Why this priority**: Core entry path for every game session.
+-
+-**Independent Test**: User can select a set from dropdown, press Start, and reach the grid with the chosen set loaded.
+-
+-**Acceptance Scenarios**:
+-
+-1. **Given** user is authenticated and at the home screen, **When** they open the dropdown and choose a set, **Then** the selection is reflected and Start becomes enabled.
+-2. **Given** a set is selected, **When** the user taps Start, **Then** they see a 6Ç-9 grid labeled 1ƒ?"54 loaded with that setƒ?Ts questions (ready to open).
+-
+-### User Story 2 - Play through tiles (Priority: P1)
+-
+-As a player, I want to tap tiles to reveal questions and track which tiles were used during this session.
+-
+-**Why this priority**: Primary gameplay loop.
+-
+-**Independent Test**: From the grid, user taps any number 1ƒ?"54, sees the right question, closes it, and the tile shows as used; state resets on reload.
+-
+-**Acceptance Scenarios**:
+-
+-1. **Given** the grid is displayed, **When** the user taps tile 17, **Then** a modal shows question 17ƒ?Ts text with a close action.
+-2. **Given** a question modal is open, **When** the user closes it, **Then** they return to the grid and tile 17 is visibly marked as used while other tiles remain untouched.
+-3. **Given** the session ends or the page reloads, **When** the grid reappears, **Then** all tiles are unmarked (session-only state).
+-
+-### User Story 3 - Upload a question set (Priority: P2)
+-
+-As a user, I want to upload a text file with 54 questions and a title so it becomes available to everyone.
+-
+-**Why this priority**: Enables custom/shared content.
+-
+-**Independent Test**: User uploads a valid file; set appears in dropdown for all users after successful save; malformed files are rejected with clear error.
+-
+-**Acceptance Scenarios**:
+-
+-1. **Given** the user taps Upload, **When** they select a valid file (55 lines), **Then** the app parses title + 54 questions, saves to Firestore, confirms success, and the new set appears in the dropdown (after refresh or auto-refresh).
+-2. **Given** the user selects a file with missing lines, **When** upload is attempted, **Then** the app blocks the upload and shows a specific error (ƒ?oexpected 55 lines: 1 title + 54 questionsƒ??).
+-3. **Given** network loss during upload, **When** save fails, **Then** the user sees a retry option and no partial set is listed.
+-
+-### Edge Cases
+-
+-- File has more or fewer than 55 lines: reject and show precise error.
+-- Duplicate titles: allow but display both; note for UX disambiguation (e.g., timestamp).
+-- Empty lines within the 54 questions: reject with specific error.
+-- Long question text: enforce max length (e.g., 280 chars) and validate on upload.
+-- Offline at app start: show error and retry; grid unusable without data.
+-- Rapid tile taps: ensure only one modal opens at a time.
+-
+-## Requirements *(mandatory)*
+-
+-### Functional Requirements
+-
+-- **FR-001**: System MUST list all shared question sets from Firestore in a dropdown after login.
+-- **FR-002**: System MUST require a selected set before enabling Start.
+-- **FR-003**: System MUST render a 6Ç-9 grid with tiles numbered 1ƒ?"54.
+-- **FR-004**: System MUST open the correct question in a modal when a tile is tapped.
+-- **FR-005**: System MUST mark tiles as used after viewing; this state MUST reset on reload/new session.
+-- **FR-006**: System MUST accept text file uploads where line 1 = title and lines 2ƒ?"55 = questions; reject invalid counts.
+-- **FR-007**: System MUST persist uploaded sets to Firestore and make them available to all authenticated users.
+-- **FR-008**: System MUST show clear error states for malformed uploads, network failures, and missing data.
+-- **FR-009**: System MUST display the userƒ?Ts name from Firebase Auth on the home screen.
+-
+-### Non-Functional Requirements
+-
+-- **NFR-001**: UX MUST be smartphone-first responsive; touch targets ƒ%¾44px; modal accessible (focus trap, ESC/close), dropdown and buttons keyboard-focusable; color contrast meets WCAG 2.1 AA.
+-- **NFR-002**: Performance budgets: home-to-grid navigation <1.5s p95 on 4G; modal open <150ms p95; grid interactions maintain <16ms frame time p95; upload parse <300ms, Firestore save <2s p95.
+-- **NFR-003**: Reliability/observability: show user-facing spinners/progress for loads/uploads; log errors to console with actionable messages during development; handle retries for transient Firestore errors.
+-- **NFR-004**: Security/privacy: enforce Firestore security rules so only authenticated users can read/write; uploaded content contains no secrets; no PII stored beyond Firebase Auth profile.
+-- **NFR-005**: Shared sets: all authenticated users can read sets; writes create new sets; deletion/update policy TBD (default: no delete path yet).
+-
+-### Key Entities *(include if feature involves data)*
+-
+-- **QuestionSet**: `{ id, title, questions[54], createdAt, createdBy }` in Firestore.
+-- **UI State (ephemeral)**: `{ activeSetId, openedTileIds[] }` held in memory (not persisted).
+-
+-## Success Criteria *(mandatory)*
+-
+-### Measurable Outcomes
+-
+-- **SC-001**: 95% of users reach the grid from home within 1.5s on 4G.
+-- **SC-002**: 95% of modal opens occur within 150ms from tile tap.
+-- **SC-003**: 0 invalid (non-55-line) files are accepted; 100% show clear error.
+-- **SC-004**: 100% of uploaded valid sets appear in dropdown for another authenticated user within 5s.
+-- **SC-005**: Mobile usability: ƒ%¾90% of test participants (or heuristic check) can start a game and open a question without guidance on a smartphone layout.
++# Feature Specification: JulesJenga
++
++**Feature Branch**: `001-julesjenga`  
++**Created**: 2025-11-29  
++**Status**: Draft  
++**Input**: User description: "Create a mobile-friendly web app (plain HTML/JS/CSS) hosted on Firebase. Uses Firebase Authentication (handled externally) and Firestore. App name: JulesJenga. After login, greet user by name, show Start button, Upload button, dropdown of available question sets (shared between users). Question set = title + exactly 54 questions. Upload: text file where line 1 is title and lines 2–55 are questions; store in Firestore for persistence. Start: go to 6×9 grid numbered 1–54; tapping a tile opens the corresponding question; closing returns to grid; opened tiles marked. Opened tiles do not persist across sessions."
++
++## Clarifications
++
++### Session 2025-11-29
++
++- Q: How should duplicate titles on upload be handled? → A: Allow duplicate titles; each upload creates a distinct set; show creator/timestamp in UI to disambiguate; never overwrite.
++
++## User Scenarios & Testing *(mandatory)*
++
++### User Story 1 - Choose and start game (Priority: P1)
++
++As an authenticated user, I want to pick a question set and start the game so I can play immediately.
++
++**Why this priority**: Core entry path for every game session.
++
++**Independent Test**: User can select a set from dropdown, press Start, and reach the grid with the chosen set loaded.
++
++**Acceptance Scenarios**:
++
++1. **Given** user is authenticated and at the home screen, **When** they open the dropdown and choose a set, **Then** the selection is reflected and Start becomes enabled.
++2. **Given** a set is selected, **When** the user taps Start, **Then** they see a 6×9 grid labeled 1–54 loaded with that set’s questions (ready to open).
++
++### User Story 2 - Play through tiles (Priority: P1)
++
++As a player, I want to tap tiles to reveal questions and track which tiles were used during this session.
++
++**Why this priority**: Primary gameplay loop.
++
++**Independent Test**: From the grid, user taps any number 1–54, sees the right question, closes it, and the tile shows as used; state resets on reload.
++
++**Acceptance Scenarios**:
++
++1. **Given** the grid is displayed, **When** the user taps tile 17, **Then** a modal shows question 17’s text with a close action.
++2. **Given** a question modal is open, **When** the user closes it, **Then** they return to the grid and tile 17 is visibly marked as used while other tiles remain untouched.
++3. **Given** the session ends or the page reloads, **When** the grid reappears, **Then** all tiles are unmarked (session-only state).
++
++### User Story 3 - Upload a question set (Priority: P2)
++
++As a user, I want to upload a text file with 54 questions and a title so it becomes available to everyone.
++
++**Why this priority**: Enables custom/shared content.
++
++**Independent Test**: User uploads a valid file; set appears in dropdown for all users after successful save; malformed files are rejected with clear error.
++
++**Acceptance Scenarios**:
++
++1. **Given** the user taps Upload, **When** they select a valid file (55 lines), **Then** the app parses title + 54 questions, saves to Firestore, confirms success, and the new set appears in the dropdown (after refresh or auto-refresh).
++2. **Given** the user selects a file with missing lines, **When** upload is attempted, **Then** the app blocks the upload and shows a specific error (“expected 55 lines: 1 title + 54 questions”).
++3. **Given** network loss during upload, **When** save fails, **Then** the user sees a retry option and no partial set is listed.
++
++### Edge Cases
++
++- File has more or fewer than 55 lines: reject and show precise error.
++- Duplicate titles: allow multiple sets; do not overwrite; disambiguate in UI (e.g., creator/timestamp).
++- Empty lines within the 54 questions: reject with specific error.
++- Long question text: enforce max length (e.g., 280 chars) and validate on upload.
++- Offline at app start: show error and retry; grid unusable without data.
++- Rapid tile taps: ensure only one modal opens at a time.
++
++## Requirements *(mandatory)*
++
++### Functional Requirements
++
++- **FR-001**: System MUST list all shared question sets from Firestore in a dropdown after login.
++- **FR-002**: System MUST require a selected set before enabling Start.
++- **FR-003**: System MUST render a 6×9 grid with tiles numbered 1–54.
++- **FR-004**: System MUST open the correct question in a modal when a tile is tapped.
++- **FR-005**: System MUST mark tiles as used after viewing; this state MUST reset on reload/new session.
++- **FR-006**: System MUST accept text file uploads where line 1 = title and lines 2–55 = questions; reject invalid counts.
++- **FR-007**: System MUST persist uploaded sets to Firestore and make them available to all authenticated users.
++- **FR-008**: System MUST show clear error states for malformed uploads, network failures, and missing data.
++- **FR-009**: System MUST display the user’s name from Firebase Auth on the home screen.
++- **FR-010**: System MUST create a new QuestionSet even when the uploaded title duplicates an existing one and present disambiguation in the UI (e.g., creator or timestamp) without overwriting prior sets.
++
++### Non-Functional Requirements
++
++- **NFR-001**: UX MUST be smartphone-first responsive; touch targets at least 44px; modal accessible (focus trap, ESC/close), dropdown and buttons keyboard-focusable; color contrast meets WCAG 2.1 AA.
++- **NFR-002**: Performance budgets: home-to-grid navigation <1.5s p95 on 4G; modal open <150ms p95; grid interactions maintain <16ms frame time p95; upload parse <300ms, Firestore save <2s p95.
++- **NFR-003**: Reliability/observability: show user-facing spinners/progress for loads/uploads; log errors to console with actionable messages during development; handle retries for transient Firestore errors.
++- **NFR-004**: Security/privacy: enforce Firestore security rules so only authenticated users can read/write; uploaded content contains no secrets; no PII stored beyond Firebase Auth profile.
++- **NFR-005**: Shared sets: all authenticated users can read sets; writes create new sets; deletion/update policy TBD (default: no delete path yet).
++
++### Key Entities *(include if feature involves data)*
++
++- **QuestionSet**: `{ id, title, questions[54], createdAt, createdBy }` in Firestore.
++- **UI State (ephemeral)**: `{ activeSetId, openedTileIds[] }` held in memory (not persisted).
++
++## Success Criteria *(mandatory)*
++
++### Measurable Outcomes
++
++- **SC-001**: 95% of users reach the grid from home within 1.5s on 4G.
++- **SC-002**: 95% of modal opens occur within 150ms from tile tap.
++- **SC-003**: 0 invalid (non-55-line) files are accepted; 100% show clear error.
++- **SC-004**: 100% of uploaded valid sets appear in dropdown for another authenticated user within 5s.
++- **SC-005**: Mobile usability: at least 90% of test participants (or heuristic check) can start a game and open a question without guidance on a smartphone layout.
+*** End Patch
+[2m2025-11-29T18:03:09.600069Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Delete File: specs/001-julesjenga/spec.md
+*** End Patch
+[2m2025-11-29T18:03:35.488565Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# Feature Specification: JulesJenga\n\n**Feature Branch**: `001-julesjenga`  \n**Created**: 2025-11-29  \n**Status**: Draft  \n**Input**: User description: \"Create a mobile-friendly web app (plain HTML/JS/CSS) hosted on Firebase. Uses Firebase Authentication (handled externally) and Firestore. App name: JulesJenga. After login, greet user by name, show Start button, Upload button, dropdown of available question sets (shared between users). Question set = title + exactly 54 questions. Upload: text file where line 1 is title and lines 2–55 are questions; store in Firestore for persistence. Start: go to 6×9 grid numbered 1–54; tapping a tile opens the corresponding question; closing returns to grid; opened tiles marked. Opened tiles do not persist across sessions.\"\n\n## Clarifications\n\n### Session 2025-11-29\n\n- Q: How should duplicate titles on upload be handled? → A: Allow duplicate titles; each upload creates a distinct set; show creator/timestamp in UI to disambiguate; never overwrite.\n\n## User Scenarios & Testing *(mandatory)*\n\n### User Story 1 - Choose and start game (Priority: P1)\n\nAs an authenticated user, I want to pick a question set and start the game so I can play immediately.\n\n**Why this priority**: Core entry path for every game session.\n\n**Independent Test**: User can select a set from dropdown, press Start, and reach the grid with the chosen set loaded.\n\n**Acceptance Scenarios**:\n\n1. **Given** user is authenticated and at the home screen, **When** they open the dropdown and choose a set, **Then** the selection is reflected and Start becomes enabled.\n2. **Given** a set is selected, **When** the user taps Start, **Then** they see a 6×9 grid labeled 1–54 loaded with that set’s questions (ready to open).\n\n### User Story 2 - Play through tiles (Priority: P1)\n\nAs a player, I want to tap tiles to reveal questions and track which tiles were used during this session.\n\n**Why this priority**: Primary gameplay loop.\n\n**Independent Test**: From the grid, user taps any number 1–54, sees the right question, closes it, and the tile shows as used; state resets on reload.\n\n**Acceptance Scenarios**:\n\n1. **Given** the grid is displayed, **When** the user taps tile 17, **Then** a modal shows question 17’s text with a close action.\n2. **Given** a question modal is open, **When** the user closes it, **Then** they return to the grid and tile 17 is visibly marked as used while other tiles remain untouched.\n3. **Given** the session ends or the page reloads, **When** the grid reappears, **Then** all tiles are unmarked (session-only state).\n\n### User Story 3 - Upload a question set (Priority: P2)\n\nAs a user, I want to upload a text file with 54 questions and a title so it becomes available to everyone.\n\n**Why this priority**: Enables custom/shared content.\n\n**Independent Test**: User uploads a valid file; set appears in dropdown for all users after successful save; malformed files are rejected with clear error.\n\n**Acceptance Scenarios**:\n\n1. **Given** the user taps Upload, **When** they select a valid file (55 lines), **Then** the app parses title + 54 questions, saves to Firestore, confirms success, and the new set appears in the dropdown (after refresh or auto-refresh).\n2. **Given** the user selects a file with missing lines, **When** upload is attempted, **Then** the app blocks the upload and shows a specific error (\"expected 55 lines: 1 title + 54 questions\").\n3. **Given** network loss during upload, **When** save fails, **Then** the user sees a retry option and no partial set is listed.\n\n### Edge Cases\n\n- File has more or fewer than 55 lines: reject and show precise error.\n- Duplicate titles: allow multiple sets; do not overwrite; disambiguate in UI (e.g., creator/timestamp).\n- Empty lines within the 54 questions: reject with specific error.\n- Long question text: enforce max length (e.g., 280 chars) and validate on upload.\n- Offline at app start: show error and retry; grid unusable without data.\n- Rapid tile taps: ensure only one modal opens at a time.\n\n## Requirements *(mandatory)*\n\n### Functional Requirements\n\n- **FR-001**: System MUST list all shared question sets from Firestore in a dropdown after login.\n- **FR-002**: System MUST require a selected set before enabling Start.\n- **FR-003**: System MUST render a 6×9 grid with tiles numbered 1–54.\n- **FR-004**: System MUST open the correct question in a modal when a tile is tapped.\n- **FR-005**: System MUST mark tiles as used after viewing; this state MUST reset on reload/new session.\n- **FR-006**: System MUST accept text file uploads where line 1 = title and lines 2–55 = questions; reject invalid counts.\n- **FR-007**: System MUST persist uploaded sets to Firestore and make them available to all authenticated users.\n- **FR-008**: System MUST show clear error states for malformed uploads, network failures, and missing data.\n- **FR-009**: System MUST display the user’s name from Firebase Auth on the home screen.\n- **FR-010**: System MUST create a new QuestionSet even when the uploaded title duplicates an existing one and present disambiguation in the UI (e.g., creator or timestamp) without overwriting prior sets.\n\n### Non-Functional Requirements\n\n- **NFR-001**: UX MUST be smartphone-first responsive; touch targets at least 44px; modal accessible (focus trap, ESC/close), dropdown and buttons keyboard-focusable; color contrast meets WCAG 2.1 AA.\n- **NFR-002**: Performance budgets: home-to-grid navigation <1.5s p95 on 4G; modal open <150ms p95; grid interactions maintain <16ms frame time p95; upload parse <300ms, Firestore save <2s p95.\n- **NFR-003**: Reliability/observability: show user-facing spinners/progress for loads/uploads; log errors to console with actionable messages during development; handle retries for transient Firestore errors.\n- **NFR-004**: Security/privacy: enforce Firestore security rules so only authenticated users can read/write; uploaded content contains no secrets; no PII stored beyond Firebase Auth profile.\n- **NFR-005**: Shared sets: all authenticated users can read sets; writes create new sets; deletion/update policy TBD (default: no delete path yet).\n\n### Key Entities *(include if feature involves data)*\n\n- **QuestionSet**: `{ id, title, questions[54], createdAt, createdBy }` in Firestore.\n- **UI State (ephemeral)**: `{ activeSetId, openedTileIds[] }` held in memory (not persisted).\n\n## Success Criteria *(mandatory)*\n\n### Measurable Outcomes\n\n- **SC-001**: 95% of users reach the grid from home within 1.5s on 4G.\n- **SC-002**: 95% of modal opens occur within 150ms from tile tap.\n- **SC-003**: 0 invalid (non-55-line) files are accepted; 100% show clear error.\n- **SC-004**: 100% of uploaded valid sets appear in dropdown for another authenticated user within 5s.\n- **SC-005**: Mobile usability: at least 90% of test participants (or heuristic check) can start a game and open a question without guidance on a smartphone layout.\n'@ | Set-Content specs/001-julesjenga/spec.md"}
+[2m2025-11-29T18:04:22.673929Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:04:22.971504Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:04:22.971537Z[0m [32m INFO[0m ghost commit captured: f10ac5f7913cf952b5bf2dfd6097d00d0bb45173
+[2m2025-11-29T18:04:22.971544Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:04:29.706674Z[0m [32m INFO[0m ToolCall: shell_command {"command":".specify/scripts/powershell/setup-plan.ps1 -Json"}
+[2m2025-11-29T18:04:32.997755Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content D:\\repos\\JulesJenga\\specs\\master\\spec.md"}
+[2m2025-11-29T18:05:38.739546Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:05:39.024858Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:05:39.024894Z[0m [32m INFO[0m ghost commit captured: 6688d99797f71cb035f1e883a0296d73ff0fe580
+[2m2025-11-29T18:05:39.024904Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:05:41.971221Z[0m [32m INFO[0m ToolCall: shell_command {"command":".specify/scripts/powershell/setup-plan.ps1 -Json"}
+[2m2025-11-29T18:05:45.992095Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-ChildItem specs"}
+[2m2025-11-29T18:05:48.506746Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-ChildItem specs/master"}
+[2m2025-11-29T18:05:53.121138Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:05:53.414676Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:05:53.414711Z[0m [32m INFO[0m ghost commit captured: aa393cd7c4978d6b75224213d8b9cd1e83395434
+[2m2025-11-29T18:05:53.414718Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:06:13.434052Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:06:13.734356Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:06:13.734390Z[0m [32m INFO[0m ghost commit captured: 309c2bcc70f36263d776a9bb187d813ae037dc15
+[2m2025-11-29T18:06:13.734399Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:06:42.008372Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:06:42.301443Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:06:42.301483Z[0m [32m INFO[0m ghost commit captured: 4fb007559e135e51eb299cead8cf5f40d98187af
+[2m2025-11-29T18:06:42.301493Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:06:46.612103Z[0m [32m INFO[0m ToolCall: shell_command {"command":".specify/scripts/powershell/setup-plan.ps1 -Json"}
+[2m2025-11-29T18:06:53.156196Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-ChildItem specs/001-julesjenga"}
+[2m2025-11-29T18:07:06.477907Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content .specify/templates/plan-template.md"}
+[2m2025-11-29T18:07:32.778077Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# Implementation Plan: JulesJenga\n\n**Branch**: `001-julesjenga` | **Date**: 2025-11-29 | **Spec**: specs/001-julesjenga/spec.md\n**Input**: Feature specification from `specs/001-julesjenga/spec.md`\n\n**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.\n\n## Summary\n\nMobile-friendly web app for JulesJenga: Firebase-authenticated users select shared 54-question sets, upload new sets via text file, and play via a 6×9 numbered grid that reveals questions. Uses plain HTML/CSS/JS, Firebase Auth (handled externally), and Firestore for shared persistence. Performance and UX budgets: home→grid <1.5s p95 on 4G, modal open <150ms p95, smartphone-first responsive with accessible controls.\n\n## Technical Context\n\n**Language/Version**: HTML5, CSS, JavaScript (ES2020+ modules)\n**Primary Dependencies**: Firebase JS SDK (Auth handled externally, Firestore, optional Storage for raw uploads), lightweight modal utility (vanilla or minimal helper)\n**Storage**: Firestore collection for QuestionSets; optional Firebase Storage for archived raw text uploads (non-blocking)\n**Testing**: Unit tests for parsing/state (Vitest or Jest); UI/e2e via Playwright; run in CI\n**Target Platform**: Modern browsers on smartphones and desktop\n**Project Type**: Single-page web app (static hosting via Firebase Hosting)\n**Performance Goals**: p95 home→grid <1.5s on 4G; modal open <150ms p95; grid interactions <16ms frame time p95; upload parse <300ms; Firestore save <2s p95\n**Constraints**: WCAG 2.1 AA contrast/focus/touch targets; session-only tile state; shared question sets readable by all authenticated users; offline usage not required (must show graceful errors)\n**Scale/Scope**: Small concurrent usage (dozens to low hundreds); minimal data volume (tens/hundreds of sets)\n\n## Constitution Check\n\n- Code Quality & Maintainability: Plan uses modular JS, lint/format, removes dead code, and enforces small cohesive changes with review.\n- Testing Discipline & Coverage: Unit tests for parsing and state; integration/e2e for upload, selection, and tile flow; regression tests for defects; CI required.\n- User Experience Consistency & Accessibility: Smartphone-first layout, WCAG 2.1 AA focus/contrast/touch targets, consistent modal/dropdown patterns; UX acceptance criteria from spec referenced.\n- Performance & Efficiency Targets: Budgets defined (latency/frame time/upload/save); measurement and rollback via feature flag for risky changes.\n- Decision Traceability & Delivery Governance: Document Firestore schema, upload handling, and security rules in ADR/research; PRs cite principle coverage.\n\n## Project Structure\n\n### Documentation (this feature)\n\n```text\nspecs/001-julesjenga/\n├─ plan.md              # This file (/speckit.plan output)\n├─ research.md          # Phase 0 output\n├─ data-model.md        # Phase 1 output\n├─ quickstart.md        # Phase 1 output\n├─ contracts/           # Phase 1 output (OpenAPI/usage)\n└─ tasks.md             # Phase 2 output (/speckit.tasks)\n```\n\n### Source Code (repository root)\n\n```text\nweb/\n├─ public/\n│  ├─ index.html\n│  ├─ styles/\n│  └─ assets/\n└─ src/\n   ├─ main.js\n   ├─ firebase.js\n   ├─ ui/\n   ├─ state/\n   └─ services/\n\ntests/\n├─ unit/\n├─ integration/\n└─ e2e/\n```\n\n**Structure Decision**: Single web app hosted on Firebase Hosting; plain HTML/CSS/JS with Firebase SDK. Tests live under `tests/` aligned to unit/integration/e2e.\n\n## Complexity Tracking\n\n> **Fill ONLY if Constitution Check has violations that must be justified**\n\n| Violation | Why Needed | Simpler Alternative Rejected Because |\n|-----------|------------|-------------------------------------|\n| N/A | N/A | N/A |\n'@ | Set-Content specs/001-julesjenga/plan.md"}
+[2m2025-11-29T18:07:44.364610Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# Research: JulesJenga\n\n## Decision: Use Firebase modular Web SDK (Auth, Firestore; Storage optional for raw files)\n- Rationale: Minimal dependencies with hosting integration; modular SDK keeps bundle size smaller and supports tree-shaking; Auth already handled externally, Firestore fits shared read model.\n- Alternatives considered: Realtime Database (less structured queries, harder per-document rules), REST-only access (adds auth token handling and overhead), bundler-based frameworks (overkill for static app).\n\n## Decision: Firestore schema for shared question sets\n- Rationale: One collection `questionSets` with documents `{ title, questions[54], createdAt, createdBy }` enforces fixed-size arrays and auditability; duplicate titles allowed without overwrite; index on `createdAt` for listing.\n- Alternatives considered: Store raw file + parse per use (worse latency), nested subcollections per user (conflicts with shared requirement), dynamic question counts (breaks Jenga board mapping).\n\n## Decision: Upload validation and error handling\n- Rationale: Client-side parse requires exactly 55 lines, strips whitespace, rejects blanks/overlong questions (>280 chars), shows specific error; prevents malformed data entering Firestore.\n- Alternatives considered: Server-side validation (no server), allowing variable counts (breaks grid), auto-padding blanks (ambiguous content).\n\n## Decision: UX and accessibility approach\n- Rationale: Smartphone-first layout with accessible modal (focus trap, ESC/close button), 44px touch targets, WCAG 2.1 AA contrast, keyboard support for dropdown/grid; aligns with constitution UX principle.\n- Alternatives considered: Desktop-first layout (violates smartphone priority), click-only modals (excludes keyboard users), non-blocking overlays (harder focus management).\n\n## Decision: Testing strategy\n- Rationale: Unit tests for parser and state marking; integration tests for upload→Firestore write and set selection; e2e (Playwright) for login stub, set selection, tile open/close, used tile state reset; aligns with testing principle.\n- Alternatives considered: Manual-only validation (non-compliant), unit-only (misses integration with Firestore), e2e-only (slow feedback, gaps in parsing edge cases).\n\n## Decision: Performance budgets and measurement\n- Rationale: Use Lighthouse/Performance API to measure home→grid (<1.5s p95 on 4G), modal open (<150ms), frame timing (<16ms p95); Firestore write monitored for <2s p95; regressions gate releases per constitution.\n- Alternatives considered: No measurement (non-compliant), looser budgets (worse UX), synthetic-only without CI checks (misses real regressions).\n'@ | Set-Content specs/001-julesjenga/research.md"}
+[2m2025-11-29T18:07:50.179306Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# Data Model: JulesJenga\n\n## Entities\n\n### QuestionSet (Firestore document)\n- id: string (Firestore document id)\n- title: string (1-120 chars)\n- questions: array<string>[54] (each 1-280 chars, trimmed)\n- createdAt: timestamp\n- createdBy: string (uid)\n\nConstraints:\n- Exactly 54 questions; reject otherwise.\n- Duplicate titles allowed; no overwrite on collision.\n- Ordering of questions must align with tile numbers (index 0 → tile 1).\n- Input sanitized to remove leading/trailing whitespace; empty lines disallowed.\n\nIndexes:\n- `createdAt` descending for listing latest uploads.\n\n### UIState (client, not persisted)\n- activeSetId: string\n- openedTileIds: array<number> (session-only)\n\nConstraints:\n- openedTileIds resets on reload; cannot exceed 54 entries; unique values 1–54.\n'@ | Set-Content specs/001-julesjenga/data-model.md"}
+[2m2025-11-29T18:08:01.472206Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\nopenapi: 3.1.0\ninfo:\n  title: JulesJenga Content API (client-to-Firestore shape)\n  version: 0.1.0\nservers:\n  - url: https://firestore.googleapis.com/v1/projects/{projectId}/databases/(default)/documents\n    variables:\n      projectId:\n        default: your-project-id\npaths:\n  /questionSets:\n    get:\n      summary: List available question sets (shared)\n      parameters:\n        - in: query\n          name: orderBy\n          schema:\n            type: string\n          example: createTime desc\n        - in: query\n          name: pageSize\n          schema:\n            type: integer\n            default: 20\n      responses:\n        '200':\n          description: List of question sets\n          content:\n            application/json:\n              schema:\n                type: object\n                properties:\n                  documents:\n                    type: array\n                    items:\n                      $ref: '#/components/schemas/QuestionSet'\n    post:\n      summary: Create a new question set from uploaded file\n      requestBody:\n        required: true\n        content:\n          application/json:\n            schema:\n              $ref: '#/components/schemas/QuestionSetInput'\n      responses:\n        '200':\n          description: Created question set\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/QuestionSet'\n  /questionSets/{id}:\n    get:\n      summary: Fetch a question set by id\n      parameters:\n        - in: path\n          name: id\n          required: true\n          schema:\n            type: string\n      responses:\n        '200':\n          description: Question set\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/QuestionSet'\n\ncomponents:\n  schemas:\n    QuestionSetInput:\n      type: object\n      required: [title, questions]\n      properties:\n        title:\n          type: string\n          minLength: 1\n          maxLength: 120\n        questions:\n          type: array\n          minItems: 54\n          maxItems: 54\n          items:\n            type: string\n            minLength: 1\n            maxLength: 280\n    QuestionSet:\n      allOf:\n        - $ref: '#/components/schemas/QuestionSetInput'\n        - type: object\n          properties:\n            name:\n              type: string\n              description: Firestore document name\n            createTime:\n              type: string\n              format: date-time\n            updateTime:\n              type: string\n              format: date-time\n            createdBy:\n              type: string\n              description: UID of uploader\n'@ | Set-Content specs/001-julesjenga/contracts/openapi.yaml"}
+[2m2025-11-29T18:08:05.350088Z[0m [32m INFO[0m ToolCall: shell_command {"command":"New-Item -ItemType Directory -Force -Path specs/001-julesjenga/contracts"}
+[2m2025-11-29T18:08:15.111618Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\nopenapi: 3.1.0\ninfo:\n  title: JulesJenga Content API (client-to-Firestore shape)\n  version: 0.1.0\nservers:\n  - url: https://firestore.googleapis.com/v1/projects/{projectId}/databases/(default)/documents\n    variables:\n      projectId:\n        default: your-project-id\npaths:\n  /questionSets:\n    get:\n      summary: List available question sets (shared)\n      parameters:\n        - in: query\n          name: orderBy\n          schema:\n            type: string\n          example: createTime desc\n        - in: query\n          name: pageSize\n          schema:\n            type: integer\n            default: 20\n      responses:\n        '200':\n          description: List of question sets\n          content:\n            application/json:\n              schema:\n                type: object\n                properties:\n                  documents:\n                    type: array\n                    items:\n                      $ref: '#/components/schemas/QuestionSet'\n    post:\n      summary: Create a new question set from uploaded file\n      requestBody:\n        required: true\n        content:\n          application/json:\n            schema:\n              $ref: '#/components/schemas/QuestionSetInput'\n      responses:\n        '200':\n          description: Created question set\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/QuestionSet'\n  /questionSets/{id}:\n    get:\n      summary: Fetch a question set by id\n      parameters:\n        - in: path\n          name: id\n          required: true\n          schema:\n            type: string\n      responses:\n        '200':\n          description: Question set\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/QuestionSet'\n\ncomponents:\n  schemas:\n    QuestionSetInput:\n      type: object\n      required: [title, questions]\n      properties:\n        title:\n          type: string\n          minLength: 1\n          maxLength: 120\n        questions:\n          type: array\n          minItems: 54\n          maxItems: 54\n          items:\n            type: string\n            minLength: 1\n            maxLength: 280\n    QuestionSet:\n      allOf:\n        - $ref: '#/components/schemas/QuestionSetInput'\n        - type: object\n          properties:\n            name:\n              type: string\n              description: Firestore document name\n            createTime:\n              type: string\n              format: date-time\n            updateTime:\n              type: string\n              format: date-time\n            createdBy:\n              type: string\n              description: UID of uploader\n'@ | Set-Content specs/001-julesjenga/contracts/openapi.yaml"}
+[2m2025-11-29T18:08:21.465258Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# Quickstart: JulesJenga\n\n## Prerequisites\n- Node.js 18+\n- Firebase CLI installed and logged in (`firebase login`)\n- Firebase project configured (project id, Firestore, Hosting enabled; Auth handled externally but needs configuration)\n\n## Setup\n1. Install dependencies (if using package.json): `npm install`\n2. Configure Firebase project id and web app config in `web/src/firebase.js` (or environment setup).\n3. Ensure Firestore rules allow authenticated users to read/write `questionSets` and disallow overwrites by title.\n\n## Run locally\n- Serve with Firebase Hosting emulator: `firebase emulators:start --only hosting,firestore`\n- Open the local hosting URL and verify login + dropdown + grid.\n\n## Tests\n- Unit/integration: `npm test` (or `npm run test:unit`) for parser/state logic.\n- E2E: `npm run test:e2e` (Playwright) covering upload, selection, tile open/close.\n\n## Deploy\n- Build (if needed) or ensure static assets in `web/public`.\n- Deploy hosting and Firestore rules: `firebase deploy --only hosting,firestore`\n\n## Verification checklist\n- Home→grid navigation <1.5s on 4G.\n- Modal open <150ms; grid interactions smooth (<16ms frame time p95).\n- Upload rejects malformed files; valid upload appears in dropdown and shares to another account.\n- Tiles mark as used per session and reset on reload.\n- Accessibility: focus trap in modal, 44px touch targets, contrast AA.\n'@ | Set-Content specs/001-julesjenga/quickstart.md"}
+[2m2025-11-29T18:08:24.707898Z[0m [32m INFO[0m ToolCall: shell_command {"command":".specify/scripts/powershell/update-agent-context.ps1 -AgentType codex"}
+[2m2025-11-29T18:08:33.148994Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content AGENTS.md"}
+[2m2025-11-29T18:08:42.426580Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: AGENTS.md
+@@
+-# JulesJenga Development Guidelines
+-
+-Auto-generated from all feature plans. Last updated: 2025-11-29
+-
+-## Active Technologies
+-
+-- [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION] + [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION] (master)
+-
+-## Project Structure
+-
+-```text
+-backend/
+-frontend/
+-tests/
+-```
+-
+-## Commands
+-
+-cd src; pytest; ruff check .
+-
+-## Code Style
+-
+-[e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]: Follow standard conventions
+-
+-## Recent Changes
+-
+-- master: Added [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION] + [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]
+-
+-<!-- MANUAL ADDITIONS START -->
+-<!-- MANUAL ADDITIONS END -->
++# JulesJenga Development Guidelines
++
++Auto-generated from all feature plans. Last updated: 2025-11-29
++
++## Active Technologies
++
++- HTML5 + CSS + JavaScript (ES2020+) with Firebase Web SDK (Auth, Firestore) (001-julesjenga)
++
++## Project Structure
++
++```text
++web/
++├─ public/
++└─ src/
++
++tests/
++├─ unit/
++├─ integration/
++└─ e2e/
++```
++
++## Commands
++
++- npm test
++- npm run test:e2e
++
++## Code Style
++
++JavaScript/HTML/CSS: follow standard conventions; lint/format with project defaults.
++
++## Recent Changes
++
++- 001-julesjenga: Added Firebase-powered web app stack with shared Firestore question sets.
++
++<!-- MANUAL ADDITIONS START -->
++<!-- MANUAL ADDITIONS END -->
+*** End Patch
+[2m2025-11-29T18:08:45.384557Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content -Raw AGENTS.md"}
+[2m2025-11-29T18:08:50.814632Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# JulesJenga Development Guidelines\n\nAuto-generated from all feature plans. Last updated: 2025-11-29\n\n## Active Technologies\n\n- HTML5 + CSS + JavaScript (ES2020+) with Firebase Web SDK (Auth, Firestore) (001-julesjenga)\n\n## Project Structure\n\n```text\nweb/\n├─ public/\n└─ src/\n\ntests/\n├─ unit/\n├─ integration/\n└─ e2e/\n```\n\n## Commands\n\n- npm test\n- npm run test:e2e\n\n## Code Style\n\nJavaScript/HTML/CSS: follow standard conventions; lint/format with project defaults.\n\n## Recent Changes\n\n- 001-julesjenga: Added Firebase-powered web app stack with shared Firestore question sets.\n\n<!-- MANUAL ADDITIONS START -->\n<!-- MANUAL ADDITIONS END -->\n'@ | Set-Content AGENTS.md"}
+[2m2025-11-29T18:09:18.646186Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:09:18.954966Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:09:18.955000Z[0m [32m INFO[0m ghost commit captured: ee0c277079d2ad78899f75b9c997c42f074369bb
+[2m2025-11-29T18:09:18.955010Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:09:20.866011Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content specs/001-julesjenga/plan.md"}
+[2m2025-11-29T18:09:25.338048Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content specs/001-julesjenga/research.md"}
+[2m2025-11-29T18:09:28.146513Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content specs/001-julesjenga/data-model.md"}
+[2m2025-11-29T18:09:31.344328Z[0m [32m INFO[0m ToolCall: shell_command {"command":"Get-Content specs/001-julesjenga/quickstart.md"}
+[2m2025-11-29T18:09:58.976828Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T18:09:59.277236Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T18:09:59.277267Z[0m [32m INFO[0m ghost commit captured: f81fdc40a8928b9d3379b736c35642792f5baa09
+[2m2025-11-29T18:09:59.277272Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T18:10:20.352411Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: specs/001-julesjenga/plan.md
+@@
+-## Summary
+-
+-Mobile-friendly web app for JulesJenga: Firebase-authenticated users select shared 54-question sets, upload new sets via text file, and play via a 6ž9 numbered grid that reveals questions. Uses plain HTML/CSS/JS, Firebase Auth (handled externally), and Firestore for shared persistence. Performance and UX budgets: home?grid <1.5s p95 on 4G, modal open <150ms p95, smartphone-first responsive with accessible controls.
++## Summary
++
++Mobile-friendly web app for JulesJenga: Firebase-authenticated users select shared 54-question sets, upload new sets via text file, and play via a 6×9 numbered grid that reveals questions. Uses plain HTML/CSS/JS, Firebase Auth (handled externally), and Firestore for shared persistence. Performance and UX budgets: home→grid <1.5s p95 on 4G, modal open <150ms p95, smartphone-first responsive with accessible controls.
+@@
+-**Performance Goals**: p95 home?grid <1.5s on 4G; modal open <150ms p95; grid interactions <16ms frame time p95; upload parse <300ms; Firestore save <2s p95
++**Performance Goals**: p95 home→grid <1.5s on 4G; modal open <150ms p95; grid interactions <16ms frame time p95; upload parse <300ms; Firestore save <2s p95
+@@
+-## Constitution Check
+-
+-- Code Quality & Maintainability: Plan uses modular JS, lint/format, removes dead code, and enforces small cohesive changes with review.
+-- Testing Discipline & Coverage: Unit tests for parsing and state; integration/e2e for upload, selection, and tile flow; regression tests for defects; CI required.
+-- User Experience Consistency & Accessibility: Smartphone-first layout, WCAG 2.1 AA focus/contrast/touch targets, consistent modal/dropdown patterns; UX acceptance criteria from spec referenced.
+-- Performance & Efficiency Targets: Budgets defined (latency/frame time/upload/save); measurement and rollback via feature flag for risky changes.
+-- Decision Traceability & Delivery Governance: Document Firestore schema, upload handling, and security rules in ADR/research; PRs cite principle coverage.
++## Constitution Check
++
++- Code Quality & Maintainability: PASS — modular JS, lint/format, dead-code removal, peer review planned (tasks in Phase 2).
++- Testing Discipline & Coverage: PASS — unit + integration + e2e committed (Phase 2 tasks); regression tests for upload parser.
++- User Experience Consistency & Accessibility: PASS — smartphone-first, WCAG 2.1 AA, modal focus trap, 44px targets (Phase 2 tasks).
++- Performance & Efficiency Targets: PASS — budgets defined; measurement tasks in Phase 2; rollback via feature flag noted.
++- Decision Traceability & Delivery Governance: PASS — ADR/research recorded; PRs must cite principle coverage.
+@@
+ **Structure Decision**: Single web app hosted on Firebase Hosting; plain HTML/CSS/JS with Firebase SDK. Tests live under `tests/` aligned to unit/integration/e2e.
+ 
+ ## Complexity Tracking
+ 
+ > **Fill ONLY if Constitution Check has violations that must be justified**
+ 
+ | Violation | Why Needed | Simpler Alternative Rejected Because |
+ |-----------|------------|-------------------------------------|
+ | N/A | N/A | N/A |
++
++## Phase 0: Research & Clarifications
++
++- Review spec (`specs/001-julesjenga/spec.md`) and research (`specs/001-julesjenga/research.md`); confirm no [NEEDS CLARIFICATION] markers remain.
++- Finalize decisions on Firestore schema, duplicate title handling, upload validation thresholds (55 lines, 280-char limit).
++- Document performance/accessibility measurement approach in research.md if further detail needed.
++
++## Phase 1: Design, Data Model, Contracts, Quickstart
++
++- Data model: Validate `specs/001-julesjenga/data-model.md` against spec; ensure question order index 0→tile 1 and duplicate-title policy reflected.
++- Contracts: Align `specs/001-julesjenga/contracts/openapi.yaml` with Firestore usage; add any missing fields (createdBy, timestamps) and sample payloads if needed.
++- Quickstart: Ensure local emulator/hosting steps in `specs/001-julesjenga/quickstart.md` match planned repo structure (`web/`, `tests/`).
++- Security rules: Draft Firestore rules to allow authenticated read/write, prevent overwrite by title collision, and validate array length; link in quickstart.
++- Update plan with any new constraints from design artifacts.
++
++## Phase 2: Implementation & Testing (to be expanded in tasks.md)
++
++- Scaffold project structure (`web/public`, `web/src`, `tests/`).
++- Implement Firebase bootstrap (`web/src/firebase.js`) with config placeholders.
++- UI flow: home screen with greeting, dropdown of sets, Start and Upload buttons; route/state management in `web/src`.
++- Upload flow: client parse/validate 55-line text; show errors; write to Firestore; optional store raw file in Storage; refresh dropdown.
++- Play flow: render 6×9 grid; open modal with question; mark used tiles (session-only); reset on reload.
++- Accessibility: modal focus trap, keyboard/touch navigation, 44px targets, contrast checks.
++- Performance: measure home→grid, modal open, frame timing; optimize if budgets missed.
++- Testing: unit tests for parser/state; integration tests for Firestore read/write flow; e2e for upload, set selection, tile open/close/reset. Ensure CI runs deterministically.
+*** End Patch
+[2m2025-11-29T18:10:40.894549Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# Implementation Plan: JulesJenga\n\n**Branch**: `001-julesjenga` | **Date**: 2025-11-29 | **Spec**: specs/001-julesjenga/spec.md\n**Input**: Feature specification from `specs/001-julesjenga/spec.md`\n\n**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.\n\n## Summary\n\nMobile-friendly web app for JulesJenga: Firebase-authenticated users select shared 54-question sets, upload new sets via text file, and play via a 6x9 numbered grid that reveals questions. Uses plain HTML/CSS/JS, Firebase Auth (handled externally), and Firestore for shared persistence. Performance and UX budgets: home->grid <1.5s p95 on 4G, modal open <150ms p95, smartphone-first responsive with accessible controls.\n\n## Technical Context\n\n**Language/Version**: HTML5, CSS, JavaScript (ES2020+ modules)\n**Primary Dependencies**: Firebase JS SDK (Auth handled externally, Firestore, optional Storage for raw uploads), lightweight modal utility (vanilla or minimal helper)\n**Storage**: Firestore collection for QuestionSets; optional Firebase Storage for archived raw text uploads (non-blocking)\n**Testing**: Unit tests for parsing/state (Vitest or Jest); UI/e2e via Playwright; run in CI\n**Target Platform**: Modern browsers on smartphones and desktop\n**Project Type**: Single-page web app (static hosting via Firebase Hosting)\n**Performance Goals**: p95 home->grid <1.5s on 4G; modal open <150ms p95; grid interactions <16ms frame time p95; upload parse <300ms; Firestore save <2s p95\n**Constraints**: WCAG 2.1 AA contrast/focus/touch targets; session-only tile state; shared question sets readable by all authenticated users; offline usage not required (must show graceful errors)\n**Scale/Scope**: Small concurrent usage (dozens to low hundreds); minimal data volume (tens/hundreds of sets)\n\n## Constitution Check\n\n- Code Quality & Maintainability: PASS — modular JS, lint/format, dead-code removal, peer review planned (Phase 2).\n- Testing Discipline & Coverage: PASS — unit + integration + e2e committed (Phase 2 tasks); regression tests for upload parser.\n- User Experience Consistency & Accessibility: PASS — smartphone-first, WCAG 2.1 AA, modal focus trap, 44px targets (Phase 2 tasks).\n- Performance & Efficiency Targets: PASS — budgets defined; measurement tasks in Phase 2; rollback via feature flag noted.\n- Decision Traceability & Delivery Governance: PASS — ADR/research recorded; PRs must cite principle coverage.\n\n## Project Structure\n\n### Documentation (this feature)\n\n```text\nspecs/001-julesjenga/\n+- plan.md              # This file (/speckit.plan output)\n+- research.md          # Phase 0 output\n+- data-model.md        # Phase 1 output\n+- quickstart.md        # Phase 1 output\n+- contracts/           # Phase 1 output (OpenAPI/usage)\n+- tasks.md             # Phase 2 output (/speckit.tasks)\n```\n\n### Source Code (repository root)\n\n```text\nweb/\n+- public/\n|  +- index.html\n|  +- styles/\n|  +- assets/\n+- src/\n   +- main.js\n   +- firebase.js\n   +- ui/\n   +- state/\n   +- services/\n\ntests/\n+- unit/\n+- integration/\n+- e2e/\n```\n\n**Structure Decision**: Single web app hosted on Firebase Hosting; plain HTML/CSS/JS with Firebase SDK. Tests live under `tests/` aligned to unit/integration/e2e.\n\n## Complexity Tracking\n\n> **Fill ONLY if Constitution Check has violations that must be justified**\n\n| Violation | Why Needed | Simpler Alternative Rejected Because |\n|-----------|------------|-------------------------------------|\n| N/A | N/A | N/A |\n\n## Phase 0: Research & Clarifications\n\n- Review spec (`specs/001-julesjenga/spec.md`) and research (`specs/001-julesjenga/research.md`); confirm no [NEEDS CLARIFICATION] markers remain.\n- Finalize Firestore schema decisions (duplicate title policy, 54-question enforcement) and validation thresholds (55 lines, 280-char limit).\n- Document performance and accessibility measurement approach in research.md if further detail needed.\n\n## Phase 1: Design, Data Model, Contracts, Quickstart\n\n- Data model: Validate `specs/001-julesjenga/data-model.md` against spec; ensure question order index 0->tile 1 and duplicate-title policy reflected.\n- Contracts: Align `specs/001-julesjenga/contracts/openapi.yaml` with Firestore usage; add any missing fields (createdBy, timestamps) and sample payloads if needed.\n- Quickstart: Ensure local emulator/hosting steps in `specs/001-julesjenga/quickstart.md` match planned repo structure (`web/`, `tests/`).\n- Security rules: Draft Firestore rules to allow authenticated read/write, validate array length, and prevent destructive overwrite; link rule deployment steps in quickstart.\n- Update plan if any new constraints emerge from these artifacts.\n\n## Phase 2: Implementation & Testing (inform tasks.md)\n\n- Scaffold project structure (`web/public`, `web/src`, `tests/`).\n- Implement Firebase bootstrap (`web/src/firebase.js`) with config placeholders.\n- UI flow: home screen with greeting, dropdown of sets, Start and Upload buttons; route/state management in `web/src`.\n- Upload flow: client parse/validate 55-line text; show errors; write to Firestore; optional store raw file in Storage; refresh dropdown.\n- Play flow: render 6x9 grid; open modal with question; mark used tiles (session-only); reset on reload.\n- Accessibility: modal focus trap, keyboard/touch navigation, 44px targets, contrast checks.\n- Performance: measure home->grid, modal open, frame timing; optimize if budgets missed; feature-flag risky changes.\n- Testing: unit tests for parser/state; integration tests for Firestore read/write flow; e2e for upload, set selection, tile open/close/reset. Ensure CI determinism.\n'@ | Set-Content specs/001-julesjenga/plan.md"}
+[2m2025-11-29T18:10:52.808421Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# Research: JulesJenga\n\n## Decision: Use Firebase modular Web SDK (Auth, Firestore; Storage optional for raw files)\n- Rationale: Minimal dependencies with hosting integration; modular SDK keeps bundle size smaller and supports tree-shaking; Auth already handled externally, Firestore fits shared read model.\n- Alternatives considered: Realtime Database (less structured queries, harder per-document rules), REST-only access (adds auth token handling and overhead), bundler-based frameworks (overkill for static app).\n\n## Decision: Firestore schema for shared question sets\n- Rationale: One collection `questionSets` with documents `{ title, questions[54], createdAt, createdBy }` enforces fixed-size arrays and auditability; duplicate titles allowed without overwrite; index on `createdAt` for listing.\n- Alternatives considered: Store raw file + parse per use (worse latency), nested subcollections per user (conflicts with shared requirement), dynamic question counts (breaks Jenga board mapping).\n\n## Decision: Upload validation and error handling\n- Rationale: Client-side parse requires exactly 55 lines, strips whitespace, rejects blanks/overlong questions (>280 chars), shows specific error; prevents malformed data entering Firestore.\n- Alternatives considered: Server-side validation (no server), allowing variable counts (breaks grid), auto-padding blanks (ambiguous content).\n\n## Decision: UX and accessibility approach\n- Rationale: Smartphone-first layout with accessible modal (focus trap, ESC/close button), 44px touch targets, WCAG 2.1 AA contrast, keyboard support for dropdown/grid; aligns with constitution UX principle.\n- Alternatives considered: Desktop-first layout (violates smartphone priority), click-only modals (excludes keyboard users), non-blocking overlays (harder focus management).\n\n## Decision: Testing strategy\n- Rationale: Unit tests for parser and state marking; integration tests for upload->Firestore write and set selection; e2e (Playwright) for login stub, set selection, tile open/close, used tile state reset; aligns with testing principle.\n- Alternatives considered: Manual-only validation (non-compliant), unit-only (misses integration with Firestore), e2e-only (slow feedback, gaps in parsing edge cases).\n\n## Decision: Performance budgets and measurement\n- Rationale: Use Lighthouse/Performance API to measure home->grid (<1.5s p95 on 4G), modal open (<150ms), frame timing (<16ms p95); Firestore write monitored for <2s p95; regressions gate releases per constitution.\n- Alternatives considered: No measurement (non-compliant), looser budgets (worse UX), synthetic-only without CI checks (misses real regressions).\n'@ | Set-Content specs/001-julesjenga/research.md"}
+[2m2025-11-29T18:10:58.373804Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# Data Model: JulesJenga\n\n## Entities\n\n### QuestionSet (Firestore document)\n- id: string (Firestore document id)\n- title: string (1-120 chars)\n- questions: array<string>[54] (each 1-280 chars, trimmed)\n- createdAt: timestamp\n- createdBy: string (uid)\n\nConstraints:\n- Exactly 54 questions; reject otherwise.\n- Duplicate titles allowed; no overwrite on collision.\n- Ordering of questions must align with tile numbers (index 0 -> tile 1).\n- Input sanitized to remove leading/trailing whitespace; empty lines disallowed.\n\nIndexes:\n- `createdAt` descending for listing latest uploads.\n\n### UIState (client, not persisted)\n- activeSetId: string\n- openedTileIds: array<number> (session-only)\n\nConstraints:\n- openedTileIds resets on reload; cannot exceed 54 entries; unique values 1-54.\n'@ | Set-Content specs/001-julesjenga/data-model.md"}
+[2m2025-11-29T18:11:06.501323Z[0m [32m INFO[0m ToolCall: shell_command {"command":"@'\n# Quickstart: JulesJenga\n\n## Prerequisites\n- Node.js 18+\n- Firebase CLI installed and logged in (`firebase login`)\n- Firebase project configured (project id, Firestore, Hosting enabled; Auth handled externally but needs configuration)\n\n## Setup\n1. Install dependencies (if using package.json): `npm install`\n2. Configure Firebase project id and web app config in `web/src/firebase.js` (or environment setup).\n3. Ensure Firestore rules allow authenticated users to read/write `questionSets` and disallow overwrites by title.\n\n## Run locally\n- Serve with Firebase Hosting emulator: `firebase emulators:start --only hosting,firestore`\n- Open the local hosting URL and verify login + dropdown + grid.\n\n## Tests\n- Unit/integration: `npm test` (or `npm run test:unit`) for parser/state logic.\n- E2E: `npm run test:e2e` (Playwright) covering upload, selection, tile open/close.\n\n## Deploy\n- Build (if needed) or ensure static assets in `web/public`.\n- Deploy hosting and Firestore rules: `firebase deploy --only hosting,firestore`\n\n## Verification checklist\n- Home->grid navigation <1.5s on 4G.\n- Modal open <150ms; grid interactions smooth (<16ms frame time p95).\n- Upload rejects malformed files; valid upload appears in dropdown and shares to another account.\n- Tiles mark as used per session and reset on reload.\n- Accessibility: focus trap in modal, 44px touch targets, contrast AA.\n'@ | Set-Content specs/001-julesjenga/quickstart.md"}
+[2m2025-11-29T18:11:55.649670Z[0m [32m INFO[0m spawning ghost snapshot task

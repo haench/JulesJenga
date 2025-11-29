@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: JulesJenga Content API (client-to-Firestore shape)
+  version: 0.1.0
+servers:
+  - url: https://firestore.googleapis.com/v1/projects/{projectId}/databases/(default)/documents
+    variables:
+      projectId:
+        default: your-project-id
+paths:
+  /questionSets:
+    get:
+      summary: List available question sets (shared)
+      parameters:
+        - in: query
+          name: orderBy
+          schema:
+            type: string
+          example: createTime desc
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: List of question sets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  documents:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/QuestionSet'
+    post:
+      summary: Create a new question set from uploaded file
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionSetInput'
+      responses:
+        '200':
+          description: Created question set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionSet'
+  /questionSets/{id}:
+    get:
+      summary: Fetch a question set by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Question set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionSet'
+
+components:
+  schemas:
+    QuestionSetInput:
+      type: object
+      required: [title, questions]
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 120
+        questions:
+          type: array
+          minItems: 54
+          maxItems: 54
+          items:
+            type: string
+            minLength: 1
+            maxLength: 280
+    QuestionSet:
+      allOf:
+        - $ref: '#/components/schemas/QuestionSetInput'
+        - type: object
+          properties:
+            name:
+              type: string
+              description: Firestore document name
+            createTime:
+              type: string
+              format: date-time
+            updateTime:
+              type: string
+              format: date-time
+            createdBy:
+              type: string
+              description: UID of uploader

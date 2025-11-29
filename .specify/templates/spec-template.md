@@ -11,13 +11,15 @@
   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
   Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
   you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
+
   Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
   Think of each story as a standalone slice of functionality that can be:
   - Developed independently
   - Tested independently
   - Deployed independently
   - Demonstrated to users independently
+
+  Each story MUST include UX acceptance (alignment with design system + accessibility) and a measurable performance expectation where relevant.
 -->
 
 ### User Story 1 - [Brief Title] (Priority: P1)
@@ -94,6 +96,13 @@
 
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+
+### Non-Functional Requirements
+
+- **NFR-001**: UX MUST align with [design system link/tokens]; accessibility meets WCAG 2.1 AA for [screens/surfaces].
+- **NFR-002**: Performance budget: [e.g., p95 <200ms for endpoint X, <16ms frame time], validated via [measurement approach].
+- **NFR-003**: Reliability/observability: [logging/alerting requirements, SLOs, rollout/rollback guardrails].
+- **NFR-004**: Security/privacy: [data handling, PII protection, dependencies posture].
 
 ### Key Entities *(include if feature involves data)*
 
