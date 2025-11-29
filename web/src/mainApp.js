@@ -37,9 +37,14 @@ export function initApp(rootEl) {
 
   function showGrid() {
     clearMain();
-    renderGrid(layout.main, (_tile, question) => {
+    const tilesSection = document.createElement('section');
+    tilesSection.className = 'card tiles-section';
+
+    renderGrid(tilesSection, (_tile, question) => {
       modal.open(question);
     });
+
+    layout.main.appendChild(tilesSection);
     const back = document.createElement('button');
     back.textContent = 'Zurück zur Startseite';
     back.className = 'ghost';
