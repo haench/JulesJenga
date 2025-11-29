@@ -10,7 +10,12 @@ export function initApp(rootEl) {
   const layout = createLayout(rootEl);
 
   const views = {
-    home: () => renderHome(layout.main, { onStart: showGrid, onUpload: showUpload, user: auth.currentUser }),
+    home: () =>
+      renderHome(layout.main, {
+        onStart: showGrid,
+        onUpload: showUpload,
+        user: auth.currentUser,
+      }),
     grid: () => showGrid(),
     upload: () => renderUpload(layout.main, { onDone: showHome }),
   };
@@ -62,7 +67,11 @@ function createLayout(root) {
   const title = document.createElement('div');
   title.className = 'view-title';
   title.textContent = 'JulesJenga';
+  const userInfo = document.createElement('div');
+  userInfo.className = 'muted';
+  userInfo.textContent = 'Sign in required to load sets';
   header.appendChild(title);
+  header.appendChild(userInfo);
 
   const main = document.createElement('main');
   main.className = 'content';

@@ -43,7 +43,11 @@ export async function renderHome(root, { onStart, onUpload, user }) {
   helper.textContent = 'Each set has 54 questions; uploading requires a 55-line text file (title + 54 questions).';
 
   async function load() {
-    status.textContent = 'Loading...';
+    status.textContent = user ? 'Loading...' : 'Sign in to load sets.';
+    if (!user) {
+      startBtn.disabled = true;
+      return;
+    }
     try {
       const sets = await fetchQuestionSets();
       loadSets(sets);
