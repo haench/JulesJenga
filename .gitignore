@@ -1,0 +1,24 @@
+# Node/JS
+node_modules/
+dist/
+build/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Env/config
+.env*
+.firebase/
+
+# Editor/OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Tests/automation
+playwright-report/
+test-results/

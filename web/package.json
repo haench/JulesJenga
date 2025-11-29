@@ -1,0 +1,22 @@
+{
+    "name": "julesjenga",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "firebase emulators:start --only hosting,firestore",
+        "test": "vitest run",
+        "test:unit": "vitest run",
+        "test:e2e": "playwright test",
+        "ci:test": "npm run test"
+    },
+    "dependencies": {
+        "firebase": "^11.0.0"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.40.0",
+        "firebase-tools": "^13.0.0",
+        "jsdom": "^27.2.0",
+        "vitest": "^1.0.0"
+    }
+}
