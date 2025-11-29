@@ -55,8 +55,11 @@ export function initApp(rootEl) {
   }
 
   setActiveSet(null);
-  listenForAuthChanges(() => {
-    console.log('[auth] state changed', auth.currentUser ? auth.currentUser.uid : 'signed out');
+  listenForAuthChanges((user) => {
+    console.log('[auth] state changed', user ? user.uid : 'signed out');
+    layout.userInfo.textContent = user
+      ? `Signed in as ${user.displayName || user.email || user.uid}`
+      : 'Signed out - sign in to load sets';
     showHome();
   });
   showHome();
@@ -84,5 +87,5 @@ function createLayout(root) {
   shell.appendChild(header);
   shell.appendChild(main);
   root.appendChild(shell);
-  return { title, main };
+  return { title, main, userInfo };
 }

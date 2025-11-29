@@ -3195,3 +3195,16 @@
 [2m2025-11-29T19:47:50.219730Z[0m [32m INFO[0m ghost commit captured: 9bfb8a04455e844fb969dea18008bf5bd0a3241a
 [2m2025-11-29T19:47:50.219739Z[0m [32m INFO[0m ghost snapshot gate marked ready
 [2m2025-11-29T19:51:57.706239Z[0m [32m INFO[0m spawning ghost snapshot task
+[2m2025-11-29T19:51:58.039465Z[0m [32m INFO[0m ghost snapshot blocking task finished
+[2m2025-11-29T19:51:58.039497Z[0m [32m INFO[0m ghost commit captured: 3a1548ae5c6d0465eefed546a2333b1faf0a9536
+[2m2025-11-29T19:51:58.039501Z[0m [32m INFO[0m ghost snapshot gate marked ready
+[2m2025-11-29T19:52:01.673815Z[0m [32m INFO[0m ToolCall: apply_patch *** Begin Patch
+*** Update File: web/src/mainApp.js
+@@
+   listenForAuthChanges(() => {
++    console.log('[auth] state changed', auth.currentUser ? auth.currentUser.uid : 'signed out');
+     showHome();
+   });
+*** End Patch
+[2m2025-11-29T19:52:05.272719Z[0m [32m INFO[0m ToolCall: shell_command {"command":"cd web; npm test","timeout_ms":120000}
+[2m2025-11-29T19:56:01.696439Z[0m [32m INFO[0m spawning ghost snapshot task
