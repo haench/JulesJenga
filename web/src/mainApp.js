@@ -51,7 +51,7 @@ export function initApp(rootEl) {
     back.textContent = 'Zurück zur Startseite';
     back.className = 'ghost';
     back.addEventListener('click', showHome);
-    layout.main.prepend(back);
+    layout.main.appendChild(back);
   }
 
   setActiveSet(null);
