@@ -25,6 +25,7 @@ export async function createQuestionSet({ title, questions }) {
     questions,
     createdAt: serverTimestamp(),
     createdBy: user.uid,
+    createdByName: user.displayName || user.email || 'Unknown',
   });
   return docRef.id;
 }
