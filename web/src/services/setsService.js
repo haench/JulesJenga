@@ -19,7 +19,7 @@ export async function createQuestionSet({ title, questions }) {
   const { collection, addDoc, serverTimestamp } = await getFirestoreFns();
   const db = await getDb();
   const user = auth.currentUser;
-  if (!user) throw new Error('auth required to upload');
+  if (!user) throw new Error('Authentifizierung für den Upload erforderlich');
   const docRef = await addDoc(collection(db, COLLECTION), {
     title,
     questions,

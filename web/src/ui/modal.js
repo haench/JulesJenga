@@ -12,7 +12,7 @@ export function createModal() {
   content.className = 'modal-content';
 
   const closeBtn = document.createElement('button');
-  closeBtn.textContent = 'Close';
+  closeBtn.textContent = 'Schließen';
   closeBtn.className = 'modal-close';
 
   dialog.appendChild(content);
