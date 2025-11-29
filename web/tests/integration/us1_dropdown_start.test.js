@@ -22,4 +22,24 @@ describe('home UI', () => {
     startBtn.click();
     expect(started).toBe(true);
   });
+
+  it('hides creator ids and shows friendly names when available', async () => {
+    setsService.fetchQuestionSets.mockResolvedValueOnce([
+      { id: 's1', title: 'Set 1', questions: Array(54).fill('Q'), createdBy: 'uid-123' },
+      {
+        id: 's2',
+        title: 'Set 2',
+        questions: Array(54).fill('Q'),
+        createdBy: 'uid-456',
+        createdByName: 'Friendly Creator',
+      },
+    ]);
+
+    const root = document.getElementById('root');
+    await renderHome(root, { user: { displayName: 'Tester' } });
+
+    const options = Array.from(root.querySelectorAll('#question-set option'));
+    expect(options[0].textContent).toBe('Set 1');
+    expect(options[1].textContent).toBe('Set 2 (Friendly Creator)');
+  });
 });

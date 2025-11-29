@@ -20,11 +20,14 @@ export async function createQuestionSet({ title, questions }) {
   const db = await getDb();
   const user = auth.currentUser;
   if (!user) throw new Error('auth required to upload');
-  const docRef = await addDoc(collection(db, COLLECTION), {
+  const createdByName = user.displayName || user.email;
+  const payload = {
     title,
     questions,
     createdAt: serverTimestamp(),
     createdBy: user.uid,
-  });
+  };
+  if (createdByName) payload.createdByName = createdByName;
+  const docRef = await addDoc(collection(db, COLLECTION), payload);
   return docRef.id;
 }
