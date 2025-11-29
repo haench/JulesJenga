@@ -5,7 +5,7 @@ import { loadSets } from '../state/appState.js';
 export function renderUpload(root, { onDone }) {
   root.innerHTML = '';
   const heading = document.createElement('h2');
-  heading.textContent = 'Upload question set';
+  heading.textContent = 'Fragenset Upload';
 
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
@@ -13,7 +13,7 @@ export function renderUpload(root, { onDone }) {
 
   const hint = document.createElement('p');
   hint.className = 'muted';
-  hint.textContent = 'File format: first line = title, next 54 lines = questions. Max 280 chars per question.';
+  hint.textContent = 'Dateiformat: erste Zeile = Titel, nächste 54 Zeilen = Fragen. Max. 280 Zeichen pro Frage.';
 
   const status = document.createElement('div');
   status.className = 'status';
@@ -22,25 +22,25 @@ export function renderUpload(root, { onDone }) {
   uploadBtn.textContent = 'Upload';
 
   const backBtn = document.createElement('button');
-  backBtn.textContent = 'Back';
+  backBtn.textContent = 'Zurück';
 
   uploadBtn.addEventListener('click', async () => {
     const file = fileInput.files?.[0];
     if (!file) {
-      status.textContent = 'Select a file first.';
+      status.textContent = 'Wähle zuerst eine Datei aus.';
       return;
     }
     const text = await file.text();
     try {
       const parsed = parseQuestionsFile(text);
-      status.textContent = 'Uploading...';
+      status.textContent = 'Upload läuft...';
       await createQuestionSet(parsed);
       const sets = await fetchQuestionSets();
       loadSets(sets);
-      status.textContent = 'Upload complete.';
+      status.textContent = 'Upload abgeschlossen.';
       onDone?.();
     } catch (err) {
-      status.textContent = err.message || 'Upload failed.';
+      status.textContent = err.message || 'Upload fehlgeschlagen.';
     }
   });
 

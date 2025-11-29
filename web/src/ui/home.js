@@ -9,8 +9,8 @@ export async function renderHome(root, { onStart, onUpload, user }) {
   greetingCard.className = 'card';
   const greet = document.createElement('p');
   greet.className = 'muted';
-  const name = user?.displayName || user?.email || 'Player';
-  greet.textContent = `Hi ${name}, pick a set to start playing.`;
+  const name = user?.displayName || user?.email || 'Spieler';
+  greet.textContent = `Hallo ${name}, wähle ein Set, um zu spielen.`;
   greetingCard.appendChild(greet);
 
   const controlCard = document.createElement('section');
@@ -20,22 +20,22 @@ export async function renderHome(root, { onStart, onUpload, user }) {
   status.className = 'status';
 
   const label = document.createElement('label');
-  label.textContent = 'Question sets';
+  label.textContent = 'Fragensets';
   label.htmlFor = 'question-set';
 
   const dropdown = document.createElement('select');
   dropdown.id = 'question-set';
-  dropdown.ariaLabel = 'Question sets';
+  dropdown.ariaLabel = 'Fragensets';
 
   const actions = document.createElement('div');
   actions.className = 'actions';
 
   const signInBtn = document.createElement('button');
-  signInBtn.textContent = 'Sign in with Google';
+  signInBtn.textContent = 'Mit Google anmelden';
   signInBtn.className = 'primary';
 
   const startBtn = document.createElement('button');
-  startBtn.textContent = 'Start';
+  startBtn.textContent = 'Starten';
   startBtn.className = 'primary';
   startBtn.disabled = true;
 
@@ -45,10 +45,10 @@ export async function renderHome(root, { onStart, onUpload, user }) {
 
   const helper = document.createElement('p');
   helper.className = 'muted';
-  helper.textContent = 'Each set has 54 questions; uploading requires a 55-line text file (title + 54 questions).';
+  helper.textContent = 'Jedes Set hat 54 Fragen; für den Upload wird eine Textdatei mit 55 Zeilen benötigt (Titel + 54 Fragen).';
 
   async function load() {
-    status.textContent = user ? 'Loading...' : 'Sign in to load sets.';
+    status.textContent = user ? 'Lade ...' : 'Melde dich an, um Sets zu laden.';
     if (!user) {
       startBtn.disabled = true;
       dropdown.disabled = true;
@@ -61,7 +61,7 @@ export async function renderHome(root, { onStart, onUpload, user }) {
       sets.forEach((set) => {
         const opt = document.createElement('option');
         opt.value = set.id;
-        opt.textContent = `${set.title} (${set.createdBy || 'unknown'})`;
+        opt.textContent = `${set.title} (${set.createdBy || 'unbekannt'})`;
         dropdown.appendChild(opt);
       });
       if (sets.length) {
@@ -71,11 +71,11 @@ export async function renderHome(root, { onStart, onUpload, user }) {
         status.textContent = '';
       } else {
         startBtn.disabled = true;
-        status.textContent = 'No question sets yet. Upload one to get started.';
+        status.textContent = 'Noch keine Fragensets vorhanden. Lade eines per Upload hoch, um loszulegen.';
       }
     } catch (err) {
       console.error(err);
-      status.textContent = 'Error loading sets.';
+      status.textContent = 'Fehler beim Laden der Sets.';
       startBtn.disabled = true;
     }
   }
@@ -86,14 +86,14 @@ export async function renderHome(root, { onStart, onUpload, user }) {
   });
 
   signInBtn.addEventListener('click', async () => {
-    status.textContent = 'Opening sign-in...';
+    status.textContent = 'Anmeldefenster wird geöffnet...';
     try {
       await signInWithGoogle();
-      status.textContent = 'Signed in. Loading sets...';
+      status.textContent = 'Angemeldet. Lade Sets...';
       await load();
     } catch (err) {
       console.error(err);
-      status.textContent = 'Sign-in failed.';
+      status.textContent = 'Anmeldung fehlgeschlagen.';
     }
   });
 

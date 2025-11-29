@@ -30,25 +30,25 @@ export function initApp(rootEl) {
   }
 
   async function showHome() {
-    setViewTitle('Home');
+    setViewTitle('Startseite');
     clearMain();
     await views.home();
   }
 
   function showUpload() {
-    setViewTitle('Upload Questions');
+    setViewTitle('Upload Fragen');
     clearMain();
     views.upload();
   }
 
   function showGrid() {
-    setViewTitle('Play');
+    setViewTitle('Spielen');
     clearMain();
     renderGrid(layout.main, (_tile, question) => {
       modal.open(question);
     });
     const back = document.createElement('button');
-    back.textContent = 'Back to Home';
+    back.textContent = 'Zurück zur Startseite';
     back.className = 'ghost';
     back.addEventListener('click', showHome);
     layout.main.prepend(back);
@@ -59,8 +59,8 @@ export function initApp(rootEl) {
     currentUser = user;
     console.log('[auth] state changed', user ? user.uid : 'signed out');
     layout.userInfo.textContent = user
-      ? `Signed in as ${user.displayName || user.email || user.uid}`
-      : 'Signed out - sign in to load sets';
+      ? `Angemeldet als ${user.displayName || user.email || user.uid}`
+      : 'Abgemeldet – zum Laden der Sets anmelden';
     showHome();
   }).catch((err) => {
     console.error('[auth] listener failed', err);
@@ -80,7 +80,7 @@ function createLayout(root) {
   title.textContent = 'JulesJenga';
   const userInfo = document.createElement('div');
   userInfo.className = 'muted';
-  userInfo.textContent = 'Sign in required to load sets';
+  userInfo.textContent = 'Anmeldung erforderlich, um Sets zu laden';
   header.appendChild(title);
   header.appendChild(userInfo);
 

@@ -8,6 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp(app);
   } catch (err) {
     console.error('[app] failed to start', err);
-    app.innerHTML = '<p style="color:red">App failed to load. Check console for details.</p>';
+    app.innerHTML = '<p style="color:red">App konnte nicht geladen werden. Siehe Konsole für Details.</p>';
   }
 });

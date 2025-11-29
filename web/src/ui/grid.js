@@ -5,7 +5,7 @@ export function renderGrid(container, onSelect) {
   grid.className = 'grid';
   const help = document.createElement('p');
   help.className = 'muted';
-  help.textContent = 'Tap a tile to reveal its question. Used tiles are dimmed for this session.';
+  help.textContent = 'Tippe auf ein Feld, um die Frage anzuzeigen. Verwendete Felder werden in dieser Sitzung abgedunkelt.';
   container.appendChild(help);
   for (let i = 1; i <= 54; i++) {
     const tile = document.createElement('button');
