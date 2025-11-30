@@ -5,6 +5,18 @@ import { signInWithGoogle } from '../auth.js';
 export async function renderHome(root, { onStart, onUpload, user }) {
   root.innerHTML = '';
 
+  function extractFirstName(rawName) {
+    if (!rawName) return '';
+    const trimmed = rawName.trim();
+    if (!trimmed) return '';
+    if (trimmed.includes('@')) {
+      const emailPrefix = trimmed.split('@')[0];
+      const emailFirst = emailPrefix.split('.')[0] || emailPrefix;
+      return emailFirst;
+    }
+    return trimmed.split(/\s+/)[0];
+  }
+
   const hero = document.createElement('div');
   hero.className = 'home-hero';
 
@@ -46,7 +58,7 @@ export async function renderHome(root, { onStart, onUpload, user }) {
   startBtn.disabled = true;
 
   const uploadBtn = document.createElement('button');
-  uploadBtn.textContent = 'Katalog hochladen';
+  uploadBtn.textContent = 'Kataloge bearbeiten';
   uploadBtn.className = 'secondary upload-spacer';
 
   async function load() {
@@ -64,7 +76,8 @@ export async function renderHome(root, { onStart, onUpload, user }) {
         const opt = document.createElement('option');
         opt.value = set.id;
         const creatorName = set.createdByName?.trim();
-        opt.textContent = creatorName ? `${set.title} (${creatorName})` : set.title;
+        const firstName = extractFirstName(creatorName);
+        opt.textContent = firstName ? `${set.title} (${firstName})` : set.title;
         dropdown.appendChild(opt);
       });
       if (sets.length) {
