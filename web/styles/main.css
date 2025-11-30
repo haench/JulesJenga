@@ -159,7 +159,6 @@ input[type="file"]:focus-visible {
 .manage-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .upload-controls,
