@@ -7,6 +7,18 @@
   "theme_color": "#f6b73c",
   "icons": [
     {
+      "src": "/assets/app_icon_167.png",
+      "sizes": "167x167",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/app_icon_180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "/assets/app_icon_192.png",
       "sizes": "192x192",
       "type": "image/png",
