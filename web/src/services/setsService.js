@@ -30,3 +30,10 @@ export async function createQuestionSet({ title, questions }) {
   });
   return docRef.id;
 }
+
+export async function deleteQuestionSet(id) {
+  const db = await getDb();
+  const { doc, deleteDoc } = await getFirestoreFns();
+  const docRef = doc(db, COLLECTION, id);
+  await deleteDoc(docRef);
+}

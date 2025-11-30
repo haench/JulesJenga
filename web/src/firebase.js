@@ -70,8 +70,8 @@ export async function getAuthInstance() {
 
 export async function getFirestoreFns() {
   await ensureFirebase();
-  const { collection, getDocs, addDoc, serverTimestamp, query, orderBy } = firestoreMod;
-  return { collection, getDocs, addDoc, serverTimestamp, query, orderBy };
+  const { collection, getDocs, addDoc, serverTimestamp, query, orderBy, doc, deleteDoc } = firestoreMod;
+  return { collection, getDocs, addDoc, serverTimestamp, query, orderBy, doc, deleteDoc };
 }
 
 export async function getAuthFns() {
