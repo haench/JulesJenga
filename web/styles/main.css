@@ -140,8 +140,29 @@ input[type="file"]:focus-visible {
 }
 
 .control-stack select,
-.control-stack button {
+.control-stack button,
+.control-stack input[type="file"] {
   width: 100%;
+}
+
+.upload-card,
+.manage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.upload-controls,
+.manage-controls {
+  gap: 16px;
+}
+
+.control-stack input[type="file"] {
+  padding: 10px 12px;
+}
+
+.page-nav {
+  margin: 4px auto 0;
 }
 
 .upload-spacer {

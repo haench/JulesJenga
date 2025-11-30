@@ -14,6 +14,7 @@ export function renderUpload(root, { onDone }) {
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
   fileInput.accept = '.txt,text/plain';
+  fileInput.className = 'file-input';
 
   const hint = document.createElement('p');
   hint.className = 'muted';
@@ -26,13 +27,10 @@ export function renderUpload(root, { onDone }) {
   const uploadBtn = document.createElement('button');
   uploadBtn.textContent = 'Katalog hochladen';
 
-  const backBtn = document.createElement('button');
-  backBtn.textContent = 'Zurück';
-
   const uploadActions = document.createElement('div');
-  uploadActions.className = 'control-stack';
+  uploadActions.className = 'control-stack upload-controls';
+  uploadActions.appendChild(fileInput);
   uploadActions.appendChild(uploadBtn);
-  uploadActions.appendChild(backBtn);
 
   uploadBtn.addEventListener('click', async () => {
     const file = fileInput.files?.[0];
@@ -55,11 +53,8 @@ export function renderUpload(root, { onDone }) {
     }
   });
 
-  backBtn.addEventListener('click', () => onDone?.());
-
   uploadCard.appendChild(heading);
   uploadCard.appendChild(hint);
-  uploadCard.appendChild(fileInput);
   uploadCard.appendChild(uploadActions);
   uploadCard.appendChild(uploadStatus);
 
@@ -73,8 +68,8 @@ export function renderUpload(root, { onDone }) {
   catalogDropdown.id = 'catalog-dropdown';
   catalogDropdown.ariaLabel = 'Katalog auswählen';
 
-  const manageActions = document.createElement('div');
-  manageActions.className = 'control-stack';
+  const manageControls = document.createElement('div');
+  manageControls.className = 'control-stack manage-controls';
 
   const downloadBtn = document.createElement('button');
   downloadBtn.textContent = 'Herunterladen';
@@ -84,19 +79,30 @@ export function renderUpload(root, { onDone }) {
   deleteBtn.textContent = 'Löschen';
   deleteBtn.className = 'ghost';
 
+  manageControls.appendChild(catalogDropdown);
+  manageControls.appendChild(downloadBtn);
+  manageControls.appendChild(deleteBtn);
+
   const manageStatus = document.createElement('div');
   manageStatus.className = 'status';
 
-  manageActions.appendChild(downloadBtn);
-  manageActions.appendChild(deleteBtn);
-
   manageCard.appendChild(manageHeading);
-  manageCard.appendChild(catalogDropdown);
-  manageCard.appendChild(manageActions);
+  manageCard.appendChild(manageControls);
   manageCard.appendChild(manageStatus);
+
+  const backActions = document.createElement('div');
+  backActions.className = 'control-stack page-nav';
+
+  const backBtn = document.createElement('button');
+  backBtn.textContent = 'Zurück zur Startseite';
+
+  backActions.appendChild(backBtn);
 
   root.appendChild(uploadCard);
   root.appendChild(manageCard);
+  root.appendChild(backActions);
+
+  backBtn.addEventListener('click', () => onDone?.());
 
   let catalogs = [];
 
