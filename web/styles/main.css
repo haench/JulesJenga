@@ -221,6 +221,10 @@ input[type="file"]:focus-visible {
   text-align: center;
 }
 
+.install-tip {
+  margin-top: 12px;
+}
+
 .grid-help {
   margin: 6px 0 10px;
 }
