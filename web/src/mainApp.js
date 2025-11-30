@@ -5,9 +5,9 @@ import { createModal } from './ui/modal.js';
 import { getStateSnapshot, setActiveSet } from './state/appState.js';
 import { listenForAuthChanges } from './auth.js';
 
-export function initApp(rootEl) {
+export function initApp(rootEl, { showInstallTip = false } = {}) {
   const modal = createModal();
-  const layout = createLayout(rootEl);
+  const layout = createLayout(rootEl, { showInstallTip });
   let currentUser = null;
 
   const views = {
@@ -63,7 +63,7 @@ export function initApp(rootEl) {
   showHome();
 }
 
-function createLayout(root) {
+function createLayout(root, { showInstallTip }) {
   root.innerHTML = '';
   const shell = document.createElement('div');
   shell.className = 'layout';
@@ -72,6 +72,12 @@ function createLayout(root) {
   main.className = 'content';
 
   shell.appendChild(main);
+  if (showInstallTip) {
+    const tip = document.createElement('p');
+    tip.className = 'install-tip muted';
+    tip.textContent = 'Tipp: Installiere die App auf deinem Home-Screen (Teilen: "zu Home-Screen")';
+    shell.appendChild(tip);
+  }
   root.appendChild(shell);
   return { main };
 }
