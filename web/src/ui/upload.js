@@ -8,7 +8,7 @@ export function renderUpload(root, { onDone }) {
   const uploadCard = document.createElement('section');
   uploadCard.className = 'card upload-card';
 
-  const heading = document.createElement('h2');
+  const heading = document.createElement('h3');
   heading.textContent = 'Fragenset Upload';
 
   const fileInput = document.createElement('input');

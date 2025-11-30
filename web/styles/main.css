@@ -118,6 +118,7 @@ input[type="file"]:focus-visible {
   border-radius: 12px;
   padding: 16px 20px;
   box-shadow: 0 6px 18px rgba(90, 58, 20, 0.12);
+  align-items: center;
 }
 
 .home-card {
@@ -149,14 +150,16 @@ input[type="file"]:focus-visible {
 .control-stack select,
 .control-stack button,
 .control-stack input[type="file"] {
-  width: 100%;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
 }
 
 .upload-card,
 .manage-card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .upload-controls,
@@ -216,6 +219,7 @@ input[type="file"]:focus-visible {
 .muted {
   color: var(--color-text-light);
   font-size: 0.95rem;
+  text-align: center;
 }
 
 .grid-help {
@@ -234,6 +238,7 @@ input[type="file"]:focus-visible {
   gap: 10px;
   width: min(480px, 100%);
   margin-top: 20px;
+  margin: 10px auto 0 auto; 
 }
 
 .tile {
