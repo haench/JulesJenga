@@ -241,7 +241,18 @@ input[type="file"]:focus-visible {
   gap: 10px;
   width: min(480px, 100%);
   margin-top: 20px;
-  margin: 10px auto 0 auto; 
+  margin: 10px auto 0 auto;
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(5, minmax(44px, 1fr));
+    gap: 8px;
+  }
+
+  #app {
+    padding: 28px 12px;
+  }
 }
 
 .tile {
